@@ -1,0 +1,22 @@
+.upload-container {
+    position: relative;
+    min-height: 100vh;
+    background-color: #081f5c; /* Dark shade of blue for dark mode */
+  }
+  
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    color: rgb(4, 0, 0); /* White text color */
+  }
+  
+  .upload-box {
+    background-color: #F2F0DE;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
