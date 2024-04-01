@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+</head>
+<body>
+
+    <h1>Reviews</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Created At</th>
+                <th>Review Text</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in review %}
+            <tr>
+                <td>{{ row.created_at }}</td>
+                <td>{{ row.review_text }}</td>
+                <td>{{ row.rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

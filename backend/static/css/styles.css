@@ -1,0 +1,29 @@
+body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
+    gap: 20px;
+    font-family: sans-serif;
+    color: rgb(95, 95, 95);
+}
+
+canvas, img {
+    width: 100%;
+    height: auto;
+}
+
+.doughnut,
+.polar-area-chart {
+    height: 300px;
+}
+
+.line-chart, .multi-line-chart,
+.bar-chart, .stacked-bar-chart {
+    width: 550px;
+}
+
+.wordcloud {
+    padding: 32px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}

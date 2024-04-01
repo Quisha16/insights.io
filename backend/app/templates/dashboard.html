@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+
+    <script src="{% static 'js/dashboard.js' %}"></script>
+        <div class="doughnut">
+            <canvas id="myChart"></canvas>
+        </div>
+    
+        <div class="line-chart">
+            <canvas id="myLineChart"></canvas>
+        </div>
+    
+        <div class="multi-line-chart">
+            <canvas id="myMultiLineChart"></canvas>
+        </div>
+        <div class="polar-area-chart">
+            <canvas id="myPolarAreaChart"></canvas>
+        </div>
+        <div class="stacked-bar-chart">
+            <canvas id="myStackedBarChart"></canvas>
+        </div>
+        <div class="bar-chart">
+            <canvas id="myBarChart"></canvas>
+        </div>
+        <div class="wordcloud">
+            <p>Word Cloud</p>
+            <img src="../media/wordcloud.png" alt="Word Cloud">
+        </div>
+</body>
+</html>
