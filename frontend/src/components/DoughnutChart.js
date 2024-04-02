@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import '../ComponentCSS/DoughnutChart.css'; // Import the CSS file for styling
+import '../ComponentCSS/charts.css'; // Import the CSS file for styling
 
 const DoughnutChart = () => {
   const chartRef = useRef(null);
@@ -47,11 +47,11 @@ const DoughnutChart = () => {
         }
       });
 
-      // return () => {
-      //   if (chartInstance.current !== null) {
-      //     chartInstance.current.destroy(); // Cleanup on component unmount
-      //   }
-      //};
+      return () => {
+        if (chartInstance.current !== null) {
+          chartInstance.current.destroy(); // Cleanup on component unmount
+        }
+      };
     } catch (error) {
       console.error('Error fetching data:', error);
     }

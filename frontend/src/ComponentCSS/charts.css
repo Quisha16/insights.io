@@ -1,0 +1,27 @@
+.Doughnut-canvas {
+    max-width: 250px; 
+    max-height: 250px; 
+  }
+
+  .HorizontalBar-canvas {
+    max-width: 400px; 
+    max-height: 400px; 
+  }
+
+  .stackedbarchart-canvas
+{
+    max-width: 350px; 
+    max-height: 350px; 
+}
+
+.polarChart-canvas {
+    max-width: 250px; 
+    max-height: 250px; 
+  }
+
+  .lineGraph-canvas {
+    max-width: 200px; 
+    max-height: 200px; 
+  }
+
+  

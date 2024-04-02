@@ -56,10 +56,10 @@ h5 {
   .lower-container
   {
     display: grid;
-    grid-gap: 20px; /* Adjust spacing between columns */
+    grid-gap: 50px; /* Adjust spacing between columns */
     grid-template-columns: repeat(2, 1fr); /* Two columns */
     margin-left: 630px;
-    margin-top: -80px; 
+    margin-top: -10px; 
    
     
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import '../ComponentCSS/HorizontalBarChart.css'; 
+import '../ComponentCSS/charts.css'; 
 
 const HorizontalBarChart = () => {
   const chartRef = useRef(null);
@@ -14,7 +14,7 @@ const HorizontalBarChart = () => {
       chartInstance.current.destroy(); 
     }
 
-    // Create a new chart instance and store it in chartInstance
+    // Create a new charst instance and store it in chartInstance
     chartInstance.current = new Chart(ctx, {
       type: 'bar', 
       data: {

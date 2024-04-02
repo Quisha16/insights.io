@@ -36,7 +36,7 @@ const dashboard = () => {
         </div>
         <div className="chart">
           <div className="blurry-box">
-            <h5>Aspect-Based Sentiment Analysis</h5>
+            <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
             <StackedBarChart />
           </div>
         </div>
