@@ -167,6 +167,7 @@ def process_product_link(url):
         review_data = parse_review_data(page, driver)
         if review_data is not None:
             scraper_dir = os.path.join(settings.BASE_DIR, 'app', 'webscraper')
+            os.makedirs(scraper_dir, exist_ok=True)
             scraper_path = os.path.join(scraper_dir, 'AmazonReviews.csv')
             review_data.to_csv(scraper_path, index=False)
             print("Data saved to 'AmazonReviews.csv'")
