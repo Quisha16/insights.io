@@ -88,7 +88,7 @@ def generate_wordcloud():
         word_freq.update(review)
 
     wordcloud = WordCloud(stopwords=Cstopwords, max_words=20, background_color="white", colormap='Pastel1').generate_from_frequencies(word_freq)
-
+    
     image_dir = settings.MEDIA_ROOT
     os.makedirs(image_dir, exist_ok=True)
     image_filename = os.path.join(image_dir, 'wordcloud.png')
