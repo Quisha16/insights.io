@@ -24,7 +24,7 @@ import pandas as pd
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
+CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
 AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
 
 Cstopwords = set(stopwords.words('english'))
@@ -155,6 +155,7 @@ def parse_review_data(page, driver):
         return None
 
 def process_product_link(url):
+    print(url)
     service = Service(CHROMEDRIVER_PATH)
     driver = webdriver.Chrome(service=service)
     driver.set_page_load_timeout(5000)

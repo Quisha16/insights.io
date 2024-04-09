@@ -9,10 +9,13 @@ from django.http import JsonResponse
 from .models import Review
 from .utils import predict_sentiment, generate_wordcloud, process_product_link
 
+IMAGE_PATH=''
+
 
 def form_submit(request):
     if request.method == 'POST':
         Review.objects.all().delete()
+        print("IN FORM SUBMIT")
 
         if 'myfile' in request.FILES:
             review_data = request.FILES['myfile']
@@ -22,6 +25,7 @@ def form_submit(request):
                 return render(request, 'home.html')
             else:
                 messages.info(request, 'File successfully uploaded.')
+            print("IN FORM SUBMIT")
 
             data = review_data.read().decode('UTF-8')
             io_string = io.StringIO(data)
@@ -48,6 +52,7 @@ def form_submit(request):
                 return render(request, 'home.html')
 
         predict_sentiment()
+        IMAGE_PATH = generate_wordcloud()
         return render(request, 'dashboard.html')
         
     return render(request, 'home.html')
@@ -89,6 +94,5 @@ def get_customer_overtime_sentiment(request):
     return JsonResponse(response_data, safe=False)
 
 def dashboard(request):
-    image_path = generate_wordcloud()
-    context = {'image_path': image_path}
+    context = {'image_path': IMAGE_PATH}
     return render(request, 'dashboard.html', context)
