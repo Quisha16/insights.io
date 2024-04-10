@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+
 
 # Application definition
 
@@ -75,8 +77,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 #CORS 
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Allow requests from this origin
+    'http://localhost:3000',
 ]
 
 

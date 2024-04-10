@@ -5,13 +5,14 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.db.models import Count
 from django.db.models.functions import TruncMonth, TruncYear
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from .models import Review
 from .utils import predict_sentiment, generate_wordcloud, process_product_link
 
 IMAGE_PATH=''
 
-
+@ensure_csrf_cookie
 def form_submit(request):
     if request.method == 'POST':
         Review.objects.all().delete()
@@ -25,6 +26,7 @@ def form_submit(request):
                 return render(request, 'home.html')
             else:
                 messages.info(request, 'File successfully uploaded.')
+            
             print("IN FORM SUBMIT")
 
             data = review_data.read().decode('UTF-8')
@@ -53,7 +55,9 @@ def form_submit(request):
 
         predict_sentiment()
         IMAGE_PATH = generate_wordcloud()
+        
         return render(request, 'dashboard.html')
+        #return JsonResponse({'message': 'Form submitted successfully'})
         
     return render(request, 'home.html')
 
