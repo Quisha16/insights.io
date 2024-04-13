@@ -5,17 +5,17 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.db.models import Count
 from django.db.models.functions import TruncMonth, TruncYear
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.csrf import ensure_csrf_cookie
 from .models import Review
 from .utils import predict_sentiment, generate_wordcloud, process_product_link
 
 IMAGE_PATH=''
 
-
+@ensure_csrf_cookie
 def form_submit(request):
     if request.method == 'POST':
         Review.objects.all().delete()
-        print("IN FORM SUBMIT")
 
         if 'myfile' in request.FILES:
             review_data = request.FILES['myfile']
@@ -25,7 +25,6 @@ def form_submit(request):
                 return render(request, 'home.html')
             else:
                 messages.info(request, 'File successfully uploaded.')
-            print("IN FORM SUBMIT")
 
             data = review_data.read().decode('UTF-8')
             io_string = io.StringIO(data)
@@ -38,22 +37,24 @@ def form_submit(request):
                 )
         elif 'product_link' in request.POST:  # Check if a text link is provided
             product_link = request.POST['product_link']
-            try:
-                review_data = process_product_link(product_link)
+            #try:
+            review_data = process_product_link(product_link)
 
-                for index, row in review_data.iterrows():
-                    Review.objects.update_or_create(
-                        created_at=row['Date'],
-                        review_text=row['Review'],
-                        rating=row['Rating']
-                    )
-            except Exception as e:
-                messages.error(request, 'Error fetching data from the provided link:')
-                return render(request, 'home.html')
+            for index, row in review_data.iterrows():
+                Review.objects.update_or_create(
+                    created_at=row['Date'],
+                    review_text=row['Review'],
+                    rating=row['Rating']
+                )
+            #except Exception as e:
+            #    messages.error(request, 'Error fetching data from the provided link:')
+            #    return render(request, 'home.html')
 
         predict_sentiment()
         IMAGE_PATH = generate_wordcloud()
+        
         return render(request, 'dashboard.html')
+        #return JsonResponse({'message': 'Form submitted successfully'})
         
     return render(request, 'home.html')
 

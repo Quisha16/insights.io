@@ -11,6 +11,7 @@ from collections import Counter
 from wordcloud import WordCloud
 from datetime import datetime
 from bs4 import BeautifulSoup
+from sklearn.metrics import accuracy_score
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -24,10 +25,21 @@ import pandas as pd
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
+CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
 AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
 
-Cstopwords = set(stopwords.words('english'))
+#nltk stopwords list without negative words
+stopword_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 
+             'yours', 'yourself', 'yourselves', 'he', 'him', 'his', 'himself', 'she', "she's", 'her', 'hers', 'herself', 'it', 
+             "it's", 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves', 'what', 'which', 'who', 'whom', 'this', 
+             'that', "that'll", 'these', 'those', 'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 
+             'having', 'do', 'does', 'did', 'doing', 'a', 'an', 'the', 'and', 'but', 'if', 'or', 'because', 'as', 'until', 'while', 
+             'of', 'at', 'by', 'for', 'with', 'about', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 
+             'below', 'to', 'from', 'up', 'down', 'in', 'out', 'on', 'off', 'over', 'under', 'again', 'further', 'then', 'once', 'here', 
+             'there', 'when', 'where', 'why', 'how', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such',
+            'only', 'own', 'same', 'so', 'than', 'too', 'very', 's', 't', 'can', 'will', 'just', 'should',"should've", 
+            'now', 'd', 'll', 'm', 'o', 're', 've', 'y', 'ma', "'s"]
+Cstopwords=set(stopwords.words('english'))
 lemma = WordNetLemmatizer()
 stemmer=SnowballStemmer('english')
 
@@ -39,8 +51,8 @@ def preprocess_reviews():
         cleaned_review = review.review_text.lower()
         cleaned_review = re.sub('[^a-zA-Z]',' ', cleaned_review)
         cleaned_review = word_tokenize(cleaned_review)
-        #cleaned_review = [stemmer.stem(w) for w in cleaned_review if w not in Cstopwords]
-        cleaned_review = [lemma.lemmatize(w) for w in cleaned_review if w not in Cstopwords]
+        cleaned_review = [stemmer.stem(w) for w in cleaned_review if w not in stopword_list]
+        #cleaned_review = [lemma.lemmatize(w) for w in cleaned_review if w not in Cstopwords]
         cleaned_review = ' '.join(cleaned_review)
         cleaned_reviews.append(cleaned_review)
         review.cleaned_review_text = cleaned_review
@@ -54,14 +66,23 @@ def predict_sentiment():
 
     predictions = []
     probabilities = []    
+    true_labels = []
+
     for review in reviews:
         vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
         prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
         proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
         probabilities.append(round(proba * 100, 2))
         predictions.append(prediction)
+
+        true_label = 1 if review.rating >= 3 else 0
+        true_labels.append(true_label)
+
         review.sentiment_prediction = prediction
         review.save()
+
+    accuracy = accuracy_score(true_labels, predictions)
+    print(accuracy)
 
     return probabilities, predictions
     
@@ -87,8 +108,7 @@ def generate_wordcloud():
         review = [word for word in review if not word in Cstopwords]
         word_freq.update(review)
 
-    wordcloud = WordCloud(stopwords=Cstopwords, max_words=20, background_color="white", colormap='Pastel1').generate_from_frequencies(word_freq)
-    
+    wordcloud = WordCloud(stopwords=Cstopwords, max_words=20,  mode='RGBA', background_color=None, colormap='Pastel1').generate_from_frequencies(word_freq)
     image_dir = settings.MEDIA_ROOT
     os.makedirs(image_dir, exist_ok=True)
     image_filename = os.path.join(image_dir, 'wordcloud.png')
@@ -106,7 +126,7 @@ def login_amazon(driver):
         continue_button.click()
 
         password_input = driver.find_element(By.ID, "ap_password")
-        password_input.send_keys("K1ll1ngC0mm;")
+        password_input.send_keys("K1ll1ngC0mmen;")
 
         sign_in_button = driver.find_element(By.ID, "signInSubmit")
         sign_in_button.click()
@@ -155,7 +175,6 @@ def parse_review_data(page, driver):
         return None
 
 def process_product_link(url):
-    print(url)
     service = Service(CHROMEDRIVER_PATH)
     driver = webdriver.Chrome(service=service)
     driver.set_page_load_timeout(5000)
