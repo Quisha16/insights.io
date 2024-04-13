@@ -1,0 +1,22 @@
+.title 
+{
+    padding-left: 6rem;
+    padding-top:5.8rem;
+    font-size: 21px;
+}
+
+
+.chartlayout
+{
+    padding-left: 4rem;
+    padding-top:1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 18px;
+    font-family: sans-serif;
+    color: rgb(95, 95, 95);
+}
+   
+
+
+   

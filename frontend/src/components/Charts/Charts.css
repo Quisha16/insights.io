@@ -1,0 +1,20 @@
+
+.polarChart-canvas {
+   
+    max-width: 250px; 
+    max-height: 250px; 
+  }
+
+  .Doughnut-canvas
+  {
+   
+    max-width: 220px; 
+    max-height: 220px;
+  }
+
+ .stackedbarchart-canvas,
+  .lineGraph-canvas,
+  .HorizontalBar-canvas {
+    width: 420px;
+  }
+

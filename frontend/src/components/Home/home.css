@@ -1,7 +1,7 @@
 .upload-container {
     position: relative;
     min-height: 100vh;
-    background-color: #081f5c; /* Dark shade of blue for dark mode */
+    
   }
   
   .content {
@@ -20,3 +20,6 @@
     border-radius: 10px;
   }
   
+  h1{
+    color:#242d49 ;
+  }

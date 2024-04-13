@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../ComponentCSS/home.css';
+import './home.css';
 
 // const Home = () => {
 //   const [uploadedFile, setUploadedFile] = useState(null);
@@ -19,7 +19,10 @@ import '../ComponentCSS/home.css';
 //           {uploadedFile && (
 //             <div>
 //               <p>Uploaded File: {uploadedFile.name}</p>
-//               <Link to="/dashboard">
+//               {/* <Link to="/dashboard">
+//                 <button>Go to Dashboard</button>
+//               </Link> */}
+//                 <Link to="./DashboardTwo">
 //                 <button>Go to Dashboard</button>
 //               </Link>
 //             </div>
@@ -31,7 +34,6 @@ import '../ComponentCSS/home.css';
 // };
 
 // export default Home;
-
 
 
 const Home = () => {
@@ -81,7 +83,7 @@ const Home = () => {
             <div>
               Or provide text link: <input type="text" name="product_link" />
             </div>
-            <Link to="/dashboard">
+            <Link to="/DashboardTwo">
             <button type="submit">Submit</button>
             </Link>
           </form>
