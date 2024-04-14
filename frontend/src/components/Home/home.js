@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../ComponentCSS/home.css';
+import './home.css';
 
 // const Home = () => {
 //   const [uploadedFile, setUploadedFile] = useState(null);
@@ -81,7 +81,7 @@ const Home = () => {
             <div>
               Or provide text link: <input type="text" name="product_link" />
             </div>
-            <Link to="/dashboard">
+            <Link to="/DashboardTwo">
             <button type="submit">Submit</button>
             </Link>
           </form>

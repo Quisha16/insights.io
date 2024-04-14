@@ -18,3 +18,17 @@
     width: 420px;
   }
 
+  .wordcloud-container {
+    display: flex;
+    margin-bottom: 20px;
+    
+  }
+  
+  .wordcloud-image {
+    max-width: 100%; /* Limit the width of the image */
+    height: auto; /* Maintain the aspect ratio */
+    border: 1px solid #ddd; /* Add a border to the image */
+    border-radius: 5px; /* Add rounded corners to the image */
+
+  }
+  

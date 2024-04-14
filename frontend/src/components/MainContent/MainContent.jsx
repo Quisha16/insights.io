@@ -6,6 +6,7 @@ import LineGraph from '../Charts/LineGraph';
 import StackedBarChart from '../Charts/StackedBarChart'; 
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
 import LineGraph2 from '../Charts/LineGraph2';
+import WordCloud from '../Charts/wordCloud'; // Import the WordCloudComponent
 const MainContent = () => {
   return (
     <div className="maincontent">
@@ -17,8 +18,9 @@ const MainContent = () => {
             <DoughnutChart />
             <HorizontalBarChart/>
             <LineGraph2/>
-            </div>
-            
+            <WordCloud /> 
+            </div>  
+             
       </div>
 
  
