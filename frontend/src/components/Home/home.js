@@ -1,40 +1,33 @@
+
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
-// const Home = () => {
-//   const [uploadedFile, setUploadedFile] = useState(null);
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return cookieValue;
+}
 
-//   const handleFileChange = (event) => {
-//     const file = event.target.files[0];
-//     setUploadedFile(file);
-//   };
+var csrftoken = getCookie('csrftoken');
 
-//   return (
-//     <div className="upload-container">
-//       <div className="content">
-//         <div className="upload-box">
-//           <h1>Upload CSV File</h1>
-//           <input type="file" onChange={handleFileChange} />
-//           {uploadedFile && (
-//             <div>
-//               <p>Uploaded File: {uploadedFile.name}</p>
-//               <Link to="/dashboard">
-//                 <button>Go to Dashboard</button>
-//               </Link>
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
-
+const CSRFToken = () => {
+  return (
+      <input type="hidden" name="csrfmiddlewaretoken" value={csrftoken} />
+  );
+};
 
 const Home = () => {
+  const navigate = useNavigate();
   const [uploadedFile, setUploadedFile] = useState(null);
 
   const handleFileChange = (event) => {
@@ -44,14 +37,19 @@ const Home = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("hi");
     const formData = new FormData();
     formData.append('myfile', uploadedFile);
     formData.append('product_link', event.target.product_link.value);
+    const csrftoken = getCookie('csrftoken');
    
     try {
-      const response = await fetch('http://localhost:8000/formsubmit/', {
+      const response = await fetch('http://localhost:8000/form_submit/', {
+        credentials: 'include',
         method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
         body: formData,
       });
   
@@ -61,9 +59,9 @@ const Home = () => {
   
       const responseData = await response.json();
       console.log(responseData);
+
+      navigate('/DashboardTwo');
   
-      // Redirect to dashboard if needed
-      // history.push('/dashboard');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
@@ -75,15 +73,14 @@ const Home = () => {
         <div className="upload-box">
           <h1>Upload CSV File</h1>
           <form method="post" encType="multipart/form-data" onSubmit={handleSubmit}>
+            <CSRFToken />
             <div>
               Select file: <input type="file" name="myfile" onChange={handleFileChange} />
             </div>
             <div>
               Or provide text link: <input type="text" name="product_link" />
             </div>
-            <Link to="/DashboardTwo">
             <button type="submit">Submit</button>
-            </Link>
           </form>
         </div>
       </div>

@@ -20,7 +20,7 @@
 // export default App;
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/Home/home';
 import DashboardTwo from './DashboardTwo';
 
