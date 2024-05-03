@@ -25,8 +25,8 @@ import pandas as pd
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-#CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
-CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
+CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
+#CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
 AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
 
 #nltk stopwords list without negative words

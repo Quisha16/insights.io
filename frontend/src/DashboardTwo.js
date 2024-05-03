@@ -9,13 +9,10 @@ import './App.css';
 function DashboardTwo() {
   return (
     <div className="App">
-        <div className="AppGlass">
+      <div className="AppContainer">
         <Sidebar/>
         <MainContent/>
-        <div>
-          
-        </div>
-        </div>
+      </div>
     </div>
   );
 }

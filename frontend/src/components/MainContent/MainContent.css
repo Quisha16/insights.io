@@ -1,41 +1,40 @@
-.title 
-{
-    padding-left: 6rem;
-    padding-top:5.8rem;
-    font-size: 21px;
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-
-.chartlayout
-{
-    padding-left: 4rem;
-    padding-top:1.5rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 18px;
-    font-family: sans-serif;
-    color: rgb(95, 95, 95);
+.title-bar {
+  flex: 0 0 5%;
+  display: flex;
+  align-items: center; 
+  justify-content: flex-end;
 }
 
-.blurry-box {
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 10px;
-    
-  }
-  h5 {
-    font-family: Arial, sans-serif; 
-    font-size: 15px; 
-    font-weight: bold;
-    color: #030441; 
-    margin-bottom: 10px; 
-    text-align: center;
-  }
-  
+.title {
+  padding: 0 4rem;
+  font-size: 1rem;
+}
 
+.chart-layout {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  padding: 3rem;
+}
 
+.chart-element {
+  border: black solid 1px;
+}
 
+.line-graph {
+  grid-column: 1 / span 3;
+  width: 100%;
+  height: calc(90vh - 0.05 * 90vh - 6rem)
+}
 
-
-   
+.one{
+  width: 600px;
+  height: 800px;
+  background-color: red;
+}

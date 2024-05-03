@@ -134,9 +134,7 @@ const PolarAreaChart = () => {
   };
 
   return (
-    <div>
-      <canvas ref={chartRef} className="polarChart-canvas" />
-    </div>
+      <canvas ref={chartRef}  />
   );
 };
 

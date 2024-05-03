@@ -132,9 +132,7 @@ const HorizontalBarChart = () => {
   }, []);
 
   return (
-    <div>
-      <canvas ref={chartRef} className="HorizontalBar-canvas" />
-    </div>
+      <canvas ref={chartRef}/>
   );
 };
 

@@ -170,9 +170,7 @@ const StackedBarChart = () => {
     }
   };
   return (
-    <div>
-      <canvas ref={chartRef} className="stackedbarchart-canvas" />
-    </div>
+    <canvas ref={chartRef} />
   );
 };
 

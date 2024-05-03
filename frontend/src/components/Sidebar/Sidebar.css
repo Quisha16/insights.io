@@ -1,35 +1,30 @@
-.Sidebar
+.sidebar
 {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    padding-top:5rem ;
-    padding-left: 1rem;
-    transition: all 300ms ease;
+  background: rgb(37, 43, 56);
+  flex: 0 0 20%;
+  position: relative;
+  transition: all 300ms ease;
+  display: flex;
+  flex-direction: column;
 }
+
 .logo
 {
-    display: flex;
-    height: 5rem;
-    font-weight: bold;
-    font-size: 22px;
-    align-items: center;
-    justify-content: center;
-    
+  padding: 2rem 4rem;
+  color: white;
 }
 
-.logo>span>span{
-    color: var(--pink)
+.logo > span > span{
+    color: gray;
 }
 
-
-/*menu*/
 .menu
 {
-  margin-top:4rem;
+  flex: 1;
   display:flex;
   flex-direction: column;
-  gap: 2rem;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .menuItem
@@ -37,33 +32,36 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  height:2.5rem ;
-  margin-left: 2rem;
-  position: relative;
+  height: 2rem;
+  position: relative; 
   transition: all 300ms ease;
-  font-size: 14px;
-  border-radius: 0.7rem;
+  margin-left: 2rem;
+  color: white;
 }
 
-.menuItem:hover{
+.menuItem span {
+  color: gray;
+  font-size: 0.9rem;
+  letter-spacing: 0.2rem;
+}
+
+.menuItem:hover {
     cursor: pointer;
 }
-
-.active{
-    background: var(--activeItem);
+ 
+.active {
+    background: transparent;
     margin-left: 0;
+}
+
+.active span {
+  color: white;
 }
 
 .active::before {
     content: "";
-    width: 8px;
+    width: 2px;
     height: 100%;
-    background: var(--pink);
-    margin-right: calc(1rem - 8px);
-  }
-
-  .menu .menuItem:last-child{
-    position: absolute;
-    bottom: 2.3rem;
-    width: 100%;
+    background: white;
+    margin-right: calc(1rem - 2px);
   }

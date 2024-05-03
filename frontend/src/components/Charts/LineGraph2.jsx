@@ -150,9 +150,7 @@ const LineGraph2 = () => {
   };
 
   return (
-    <div>
       <canvas ref={chartRef} />
-    </div>
   );
 };
 

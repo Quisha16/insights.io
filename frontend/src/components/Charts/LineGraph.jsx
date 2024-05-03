@@ -175,9 +175,7 @@ const LineGraph = () => {
     }
   };
   return (
-    <div className="chart">
       <canvas ref={chartRef} />
-    </div>
   );
 };
 

@@ -6,47 +6,46 @@ import LineGraph from '../Charts/LineGraph';
 import StackedBarChart from '../Charts/StackedBarChart'; 
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
 import LineGraph2 from '../Charts/LineGraph2';
-import WordCloud from '../Charts/wordCloud'; // Import the WordCloudComponent
+import WordCloud from '../Charts/wordCloud'; 
+
 const MainContent = () => {
+ 
   return (
-    <div className="maincontent">
-        <h1 className='title'>Dashboard</h1>
-      <div className="chartlayout">
-      <div className="blurry-box">
+    <div className="main-content">
+      <div className="title-bar">
+        <h1 className="title">Dashboard</h1>
+      </div>
+      <div className="chart-layout">
+        <div className="chart-element line-graph">
+          <h5>Product Performance Over Months</h5>
+          <LineGraph />
+        </div>
+        <div className="chart-element">
           <h5>Customer Ratings</h5>
-            <PolarAreaChart />
-          </div>
-          <div className="blurry-box">
-            <h5>Product Performance Over Months</h5>
-            <LineGraph />
-          </div>
-          <div className="blurry-box">
-            <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
-            <StackedBarChart />
-          </div>
-            <div className="blurry-box">
+          <PolarAreaChart />
+        </div>
+        <div className="chart-element">
+          <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
+          <StackedBarChart />
+        </div>
+        <div className="chart-element">
           <h5>Customer Sentiment</h5>
-            <DoughnutChart />
-          </div>
-          <div className="blurry-box">
-            <h5>Areas Of improvement</h5>
-            <HorizontalBarChart />
-          </div>
-          <div className="blurry-box">
+          <DoughnutChart />
+        </div>
+        <div className="chart-element">
+          <h5>Areas Of improvement</h5>
+          <HorizontalBarChart />
+        </div>
+        <div className="chart-element">
           <h5>Positive Sentiment Over Time</h5>
-            <LineGraph2 />
-          </div>
-          <div className="blurry-box">
+          <LineGraph2 />
+        </div>
+        <div className="chart-element">
           <h5>Sentiment Word Cloud</h5>
           <WordCloud /> 
-          </div>
-          
-            </div>  
-             
-      </div>
-
- 
-
+        </div>
+      </div> 
+    </div>
   )
 }
 

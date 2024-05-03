@@ -1,3 +1,17 @@
+/* css fonts */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+
+* {
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 2px;
+  box-sizing: border-box;
+}
+
+/* css variables */
 :root {
   --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
   --orange: #fca61f;
@@ -11,28 +25,19 @@
   --activeItem: #f799a354;
 }
 
-.App
-{
-  background: linear-gradient(
-    106.37deg,
-    #ffe1bc 29.63%,
-    #ffcfd1 51.55%,
-    #f3c6f1 90.85%
-  );
+.App {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family:sans-serif ;
+  background: linear-gradient(0deg, rgb(47, 54, 80) 20%, rgb(80, 93, 124) 96%);
+  /* background: linear-gradient(106.37deg, #ffe1bc 29.63%, #ffcfd1 51.55%, #f3c6f1 90.85% ); */
 }
 
-.AppGlass
-{
- display: grid;
- height: 94%;
- width: 94%;
- border-radius: 2rem ;
- background-color: var(--glass);
- overflow: hidden;
- grid-template-columns: 11rem auto 5rem ;
+.AppContainer {
+  display: flex;
+  height: 90vh;
+  width: 90vw;
+  background-color: var(--glass);
+  /* overflow: hidden; */
 }

@@ -111,9 +111,7 @@ const DoughnutChart = () => {
   };
 
   return (
-    <div>
-      <canvas ref={chartRef} className="Doughnut-canvas" /> 
-    </div>
+      <canvas ref={chartRef} /> 
   );
 };
 
