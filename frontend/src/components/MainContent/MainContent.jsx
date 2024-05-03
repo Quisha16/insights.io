@@ -22,18 +22,23 @@ const MainContent = () => {
           <h5>Product Performance Over Months</h5>
           <LineGraph />
         </div>
-        <div className="chart-element">
+        <div className="chart-element customer-rating">
           <h5>Customer Ratings</h5>
           <PolarAreaChart />
+        </div>
+        <div className="chart-element customer-sentiment" >
+          <h5>Customer Sentiment</h5>
+          <DoughnutChart />
+        </div>
+        <div className="chart-element card">
+          <h5>Review Summary</h5>
+          <Card /> 
         </div>
         <div className="chart-element">
           <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
           <StackedBarChart />
         </div>
-        <div className="chart-element">
-          <h5>Customer Sentiment</h5>
-          <DoughnutChart />
-        </div>
+        
         <div className="chart-element">
           <h5>Areas Of improvement</h5>
           <HorizontalBarChart />
@@ -46,10 +51,7 @@ const MainContent = () => {
           <h5>Sentiment Word Cloud</h5>
           <WordCloud /> 
         </div>
-        <div className="chart-element">
-          <h5>Review Summary</h5>
-          <Card /> 
-        </div>
+        
       </div> 
     </div>
   )

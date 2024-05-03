@@ -38,11 +38,13 @@
   }
   .info-label {
     text-transform: capitalize;
-    font-size: 10px;
+    font-size: 13px;
+    
   }
   .info-value {
-    font-size: 25px;
+    margin-top: 10px;
+    font-size: 40px;
     font-weight: bold;
-    color: #154657;
+    color: #A5E5FB;
     display: block; 
   }

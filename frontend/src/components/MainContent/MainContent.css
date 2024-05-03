@@ -42,3 +42,27 @@
   height: 800px;
   background-color: red;
 }
+
+.customer-rating
+{
+  grid-column: 1 / span 1;
+  width: 100%;
+  height: calc(50vh - 0.05 * 50vh - 6rem); 
+  margin-top: 4rem;
+}
+
+.customer-sentiment
+{
+  grid-column: 2/ span 1;
+  width: 100%;
+  height: calc(40vh - 0.05 * 40vh - 6rem); 
+  margin-top: 4rem;
+}
+
+.card
+{
+  grid-column: 3/ span 1;
+  width: 100%;
+  height: calc(40vh - 0.05 * 40vh - 6rem); 
+  margin-top: 4rem;
+}
