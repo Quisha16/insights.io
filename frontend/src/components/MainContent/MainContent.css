@@ -19,7 +19,8 @@
 .chart-layout {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  /* grid-template-columns: repeat(3, 1fr);  */
+  grid-template-columns: repeat(3, minmax(0, 1fr)); 
   padding: 3rem;
 }
 
@@ -31,7 +32,9 @@
 .line-graph {
   grid-column: 1 / span 3;
   width: 100%;
-  height: calc(90vh - 0.05 * 90vh - 6rem)
+  /* height: calc(90vh - 0.05 * 90vh - 6rem) */
+  height: calc(50vh - 0.05 * 50vh - 6rem); 
+  
 }
 
 .one{

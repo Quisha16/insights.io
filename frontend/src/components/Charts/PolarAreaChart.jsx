@@ -94,7 +94,7 @@ const PolarAreaChart = () => {
               label: "Customer Ratings",
               data: data,
               backgroundColor: [
-                "  #83D4E4", 
+                " #83D4E4", 
                 "#2D8B9D", 
                 "#007C8F", 
                 "#00657A", 
