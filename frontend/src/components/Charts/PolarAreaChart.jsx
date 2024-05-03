@@ -94,13 +94,11 @@ const PolarAreaChart = () => {
               label: "Customer Ratings",
               data: data,
               backgroundColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
+                "  #83D4E4", 
+                "#2D8B9D", 
+                "#007C8F", 
+                "#00657A", 
+                "#50ADCC"  
               ],
               borderWidth: 1,
             },
@@ -116,7 +114,7 @@ const PolarAreaChart = () => {
           plugins: {
             legend: {
               labels: {
-                color: "#070F2B",
+                color: "#EDF1F4",
               },
             },
           },
@@ -133,9 +131,7 @@ const PolarAreaChart = () => {
     }
   };
 
-  return (
-      <canvas ref={chartRef}  />
-  );
+  return <canvas ref={chartRef} />;
 };
 
 export default PolarAreaChart;

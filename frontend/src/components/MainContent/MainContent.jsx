@@ -7,6 +7,8 @@ import StackedBarChart from '../Charts/StackedBarChart';
 import HorizontalBarChart from '../Charts/HorizontalBarChart';
 import LineGraph2 from '../Charts/LineGraph2';
 import WordCloud from '../Charts/wordCloud'; 
+import Card from '../Charts/card';
+
 
 const MainContent = () => {
  
@@ -43,6 +45,10 @@ const MainContent = () => {
         <div className="chart-element">
           <h5>Sentiment Word Cloud</h5>
           <WordCloud /> 
+        </div>
+        <div className="chart-element">
+          <h5>Review Summary</h5>
+          <Card /> 
         </div>
       </div> 
     </div>

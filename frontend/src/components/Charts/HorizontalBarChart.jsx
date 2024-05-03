@@ -94,7 +94,7 @@ const HorizontalBarChart = () => {
           {
             label: "count",
             data: [8, 6, 5, 7, 4],
-            backgroundColor: "#ffc872",
+            backgroundColor: "#50ADCC",
             borderWidth: 1,
           },
         ],
@@ -105,19 +105,19 @@ const HorizontalBarChart = () => {
         scales: {
           x: {
             ticks: {
-              color: "#070F2B",
+              color: "#EDF1F4",
             },
           },
           y: {
             ticks: {
-              color: "#070F2B",
+              color: "#EDF1F4",
             },
           },
         },
         plugins: {
           legend: {
             labels: {
-              color: "#070F2B",
+              color: "#EDF1F4",
             },
           },
         },

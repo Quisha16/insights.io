@@ -115,12 +115,12 @@ const StackedBarChart = () => {
             {
               label: "Positive Sentiments",
               data: oneValues,
-              backgroundColor: "#FFDBAA",
+              backgroundColor: "#4AC295",
             },
             {
               label: "Negative Sentiments",
               data: zeroValues,
-              backgroundColor: "#FFB7B7",
+              backgroundColor: "#39AFE0",
             },
           ],
         },
@@ -128,7 +128,7 @@ const StackedBarChart = () => {
           plugins: {
             legend: {
               labels: {
-                color: "#070F2B", // Set legend label color
+                color: "#EDF1F4", // Set legend label color
               },
             },
           },
@@ -143,7 +143,7 @@ const StackedBarChart = () => {
                 },
               },
               ticks: {
-                color: "#070F2B", // Set x-axis label color
+                color: "#EDF1F4", // Set x-axis label color
               },
             },
             y: {
@@ -151,7 +151,7 @@ const StackedBarChart = () => {
               display: true,
 
               ticks: {
-                color: "#070F2B", // Set y-axis label color
+                color: "#EDF1F4", // Set y-axis label color
               },
             },
           },

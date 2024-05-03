@@ -31,3 +31,18 @@
 
   }
   
+
+
+  .info-item {
+    margin-bottom: 10px;
+  }
+  .info-label {
+    text-transform: capitalize;
+    font-size: 10px;
+  }
+  .info-value {
+    font-size: 25px;
+    font-weight: bold;
+    color: #154657;
+    display: block; 
+  }

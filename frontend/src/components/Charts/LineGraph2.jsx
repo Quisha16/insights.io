@@ -106,11 +106,11 @@ const LineGraph2 = () => {
             {
               label: "Positive Sentiment",
               data: data, // Use the data array
-              borderColor: "#9376E0", // color for the line
+              borderColor: "#4399BA", // color for the line
               borderWidth: 2,
               fill: {
                 target: "origin",
-                above: "#FFD1DA",
+                above: "#A5E5FB",
               },
             },
           ],
@@ -120,19 +120,19 @@ const LineGraph2 = () => {
           scales: {
             x: {
               ticks: {
-                color: "#070F2B", // Set x-axis label color to white
+                color: "#EDF1F4", // Set x-axis label color to white
               },
             },
             y: {
               ticks: {
-                color: "#070F2B", // Set y-axis label color to white
+                color: "#EDF1F4", // Set y-axis label color to white
               },
             },
           },
           plugins: {
             legend: {
               labels: {
-                color: "#070F2B", // Set legend label color to white
+                color: "#EDF1F4", // Set legend label color to white
               },
             },
           },

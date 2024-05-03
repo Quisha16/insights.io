@@ -82,8 +82,8 @@ const DoughnutChart = () => {
             label: 'Reviews',
             data: data,
             backgroundColor: [
-              '#FFC7C7', // Yellow-positive reviews
-              '#F3CCF3', // Blue-negative reviews
+              '#4AC295', // positive reviews
+              '#4399BA', // negative reviews
             ],
             borderWidth: 1
           }]
@@ -93,7 +93,7 @@ const DoughnutChart = () => {
           plugins: {
             legend: {
               labels: {
-                color: '##070F2B' // Set legend label color
+                color: '#EDF1F4' // Set legend label color
               }
             }
           }

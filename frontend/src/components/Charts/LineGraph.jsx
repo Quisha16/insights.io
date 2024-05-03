@@ -120,14 +120,14 @@ const LineGraph = () => {
             {
               label: "Positive Sentiment",
               data: oneValues, // Example data for positive sentiment over months
-              borderColor: "#FDBF60", // Positive sentiment line color
+              borderColor: "#19EE9E", // Positive sentiment line color
               borderWidth: 2,
               fill: false,
             },
             {
               label: "Negative Sentiment",
               data: zeroValues, // Example data for negative sentiment over months
-              borderColor: "#F28585", // Negative sentiment line color
+              borderColor: "#11C3CB ", // Negative sentiment line color
               borderWidth: 2,
               fill: false,
             },
@@ -139,7 +139,7 @@ const LineGraph = () => {
             y: {
               beginAtZero: true,
               ticks: {
-                color: "#070F2B", // Color of the y-axis labels
+                color: "#EDF1F4", // Color of the y-axis labels
               },
             },
             x: {
@@ -150,14 +150,14 @@ const LineGraph = () => {
                 },
               },
               ticks: {
-                color: "#070F2B", // Color of the x-axis labels
+                color: "#EDF1F4", // Color of the x-axis labels
               },
             },
           },
           plugins: {
             legend: {
               labels: {
-                color: "#070F2B", // Color of the legend labels
+                color: "#EDF1F4", // Color of the legend labels
               },
             },
           },
