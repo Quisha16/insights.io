@@ -1,3 +1,7 @@
+h1 {
+  color: #ddd;
+}
+
 .main-content {
   flex: 1;
   display: flex;
@@ -7,7 +11,7 @@
 .title-bar {
   flex: 0 0 5%;
   display: flex;
-  align-items: center; 
+  align-items: center;
   justify-content: flex-end;
 }
 
@@ -19,50 +23,69 @@
 .chart-layout {
   flex: 1;
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr);  */
-  grid-template-columns: repeat(3, minmax(0, 1fr)); 
+  grid-template-columns: repeat(4, 1fr);
   padding: 3rem;
 }
 
 .chart-element {
-  border: black solid 1px;
-  
+  padding: 2rem;
+  margin: 1rem;
+  background-color: linear-gradient(
+    0deg,
+    rgb(47, 54, 80) 20%,
+    rgb(80, 93, 124) 96%
+  );
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .line-graph {
   grid-column: 1 / span 3;
-  width: 100%;
-  /* height: calc(90vh - 0.05 * 90vh - 6rem) */
-  height: calc(50vh - 0.05 * 50vh - 6rem); 
+}
+
+.stacked-bar {
+  max-height:500px ;
+  grid-column: 2 / span 2;
+}
+.card2 {
+  grid-column: 2 / span 2;
+}
+
+.word-cloud
+{
   
+  grid-column: 3 / span 2;
 }
-
-.one{
-  width: 600px;
-  height: 800px;
-  background-color: red;
-}
-
-.customer-rating
+.wordcloud-image
 {
-  grid-column: 1 / span 1;
+  height: 100%;
   width: 100%;
-  height: calc(50vh - 0.05 * 50vh - 6rem); 
-  margin-top: 4rem;
+  object-fit: cover;
+  object-position: center;
+}
+.wordcloud-container
+{
+  width: 80%;
+  ;
 }
 
-.customer-sentiment
-{
-  grid-column: 2/ span 1;
-  width: 100%;
-  height: calc(40vh - 0.05 * 40vh - 6rem); 
-  margin-top: 4rem;
+.polar-chart
+ {
+  /* grid-column: 1/ span 2; */
+  grid-row: span 2; /* Spanning 2 rows */
+  grid-column: span 2; /* Spanning 2 columns */
 }
 
-.card
-{
-  grid-column: 3/ span 1;
-  width: 100%;
-  height: calc(40vh - 0.05 * 40vh - 6rem); 
-  margin-top: 4rem;
+.info-item {
+  margin-bottom: 10px;
+}
+.info-label {
+  text-transform: capitalize;
+  font-size: 13px;
+}
+.info-value {
+  margin-top: 10px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #a5e5fb;
+  display: block;
 }

@@ -1,60 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import './Charts.css';
 
-// const DoughnutChart = () => {
-//   const chartRef = useRef(null);
-//   const chartInstance = useRef(null);
-
-//   useEffect(() => {
-//     const ctx = chartRef.current.getContext('2d');
-    
-//     if (chartInstance.current !== null) {
-//       chartInstance.current.destroy(); // Destroy the previous Chart instance
-//     }
-
-//     chartInstance.current = new Chart(ctx, {
-//       type: 'doughnut', 
-//       data: {
-//         labels: ['Positive', 'Negative'],
-//         datasets: [{
-//           label: 'Reviews',
-//           data: [70, 30], // Hardcoded values for positive and negative reviews
-//           backgroundColor: [
-//             "#FFC7C7", // positive reviews
-//             "#F3CCF3", // negative reviews
-//           ],
-//           borderWidth: 1
-//         }]
-//       },
-//       options: {
-//         responsive: true,
-//         plugins: {
-//           legend: {
-//             labels: {
-//               color: '##070F2B' // Set legend label color
-//             }
-//           }
-//         }
-//       }
-//     });
-
-//     return () => {
-//       if (chartInstance.current !== null) {
-//         chartInstance.current.destroy(); // Cleanup on component unmount
-//       }
-//     };
-//   }, []);
-
-//   return (
-//     <div>
-//       <canvas ref={chartRef} className="Doughnut-canvas" /> 
-//     </div>
-//   );
-// };
-
-// export default DoughnutChart;
 
 const DoughnutChart = () => {
   const chartRef = useRef(null);
@@ -77,7 +24,7 @@ const DoughnutChart = () => {
       chartInstance.current = new Chart(ctx, {
         type: 'doughnut', 
         data: {
-          labels: labels,
+          labels: ["Negative Sentiment","Positive Sentiment"],
           datasets: [{
             label: 'Reviews',
             data: data,
@@ -85,7 +32,7 @@ const DoughnutChart = () => {
               '#4AC295', // positive reviews
               '#4399BA', // negative reviews
             ],
-            borderWidth: 1
+            borderWidth: 0
           }]
         },
         options: {

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
 
-const PolarAreaChart = () => {
+const PieChart = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -13,16 +13,15 @@ const PolarAreaChart = () => {
     try {
       const response = await fetch("http://localhost:8000/customer_rating/");
       const responseData = await response.json();
-      const [labels, data] = [
-        Object.keys(responseData.rating_data),
-        Object.values(responseData.rating_data),
-      ];
+      const labels = Object.keys(responseData.rating_data);
+      const data = Object.values(responseData.rating_data);
+
       const ctx = chartRef.current.getContext("2d");
       if (chartInstance.current !== null) {
         chartInstance.current.destroy(); // Destroy the previous Chart instance
       }
       chartInstance.current = new Chart(ctx, {
-        type: "polarArea",
+        type: "pie",
         data: {
           labels: labels,
           datasets: [
@@ -42,13 +41,10 @@ const PolarAreaChart = () => {
         },
         options: {
           responsive: true,
-          scales: {
-            r: {
-              display: true,
-            },
-          },
           plugins: {
-            legend: {
+            legend: { 
+              
+              position: 'right',
               labels: {
                 color: "#EDF1F4",
               },
@@ -70,4 +66,4 @@ const PolarAreaChart = () => {
   return <canvas ref={chartRef} />;
 };
 
-export default PolarAreaChart;
+export default PieChart;

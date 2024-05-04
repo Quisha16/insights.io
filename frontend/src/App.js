@@ -22,6 +22,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/Home/home';
+
 import DashboardTwo from './DashboardTwo';
 
 
@@ -31,7 +32,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/DashboardTwo" element={<DashboardTwo />} />
+          <Route path="/DashboardTwo/*" element={<DashboardTwo />} />
         </Routes>
       </div>
     </Router>

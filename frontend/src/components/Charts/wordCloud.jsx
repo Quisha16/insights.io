@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from 'react';
-import './Charts.css';
 const WordCloud = () => {
   const [imageSrc, setImageSrc] = useState('');
 

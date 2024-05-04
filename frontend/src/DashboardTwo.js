@@ -10,7 +10,7 @@ function DashboardTwo() {
   return (
     <div className="App">
       <div className="AppContainer">
-        <Sidebar/>
+        {/* <Sidebar/> */}
         <MainContent/>
       </div>
     </div>
@@ -18,3 +18,4 @@ function DashboardTwo() {
 }
 
 export default DashboardTwo;
+
