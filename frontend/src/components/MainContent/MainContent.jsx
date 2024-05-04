@@ -9,51 +9,12 @@ import HorizontalBarChart from "../Charts/HorizontalBarChart";
 import LineGraph2 from "../Charts/LineGraph2";
 import WordCloud from "../Charts/wordCloud";
 import Card from "../Charts/card";
-import jsPDF from "jspdf";
 
-const headerTexts = ["Product Performance overtime"];
-
-function downloadPDF(headerTexts) {
-  const doc = new jsPDF();
-  const canvasElements = document.querySelectorAll(".chart-element canvas");
-  const canvasList = Array.from(canvasElements);
-  canvasList.forEach((canvas, index) => {
-    if (index > 0) {
-      doc.addPage();
-    }
-    const imgData = canvas.toDataURL("image/jpeg");
-    doc.addImage(imgData, "JPEG", 15, 15, 150, 130);
-    // Add header text
-    if (headerTexts && headerTexts[index]) {
-      doc.text(10, 10, headerTexts[index]);
-    }
-  });
-  doc.save("charts.pdf");
-}
 
 const MainContent = () => {
   return (
     <div className="main-content">
-      <div className="title-bar">
-        <div className="logo">
-          <span>
-            Insights<span>.io</span>
-          </span>
-        </div>
-        <h1 className="title">Dashboard</h1>
-        <button
-          onClick={() => downloadPDF(headerTexts)} // Corrected onClick attribute
-          style={{
-            // Corrected style attribute
-            width: "150px",
-            height: "40px",
-            backgroundColor: "#007bff",
-            color: "#ffffff",
-          }}
-        >
-          PDF Version
-        </button>
-      </div>
+      
       <div className="chart-layout">
         <div className="chart-element line-graph">
           <h5>Product Performance Overtime </h5>

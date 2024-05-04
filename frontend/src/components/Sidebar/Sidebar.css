@@ -22,7 +22,7 @@
 {
   flex: 1;
   display:flex;
-  flex-direction: column;
+  flex-direction:row;
   justify-content: center;
   gap: 1.5rem;
 }
@@ -63,5 +63,5 @@
     width: 2px;
     height: 100%;
     background: white;
-    margin-right: calc(1rem - 2px);
+    margin-top: calc(1rem - 2px);
   }

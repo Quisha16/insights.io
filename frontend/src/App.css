@@ -37,6 +37,7 @@
 
 .AppContainer {
   display: flex;
+  flex-direction: column; 
   margin: 6rem 0;
   /* height: 90vh; */
   width: 90vw;
