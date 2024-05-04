@@ -19,7 +19,6 @@ const LineGraph = () => {
         "http://localhost:8000/customer_overtime_sentiment/"
       );
       const responseData = await response.json();
-      console.log(responseData);
       const zeroData = responseData.zero_overtime_sentiment_data;
       const oneData = responseData.one_overtime_sentiment_data;
       const labels = [
@@ -64,6 +63,9 @@ const LineGraph = () => {
               ticks: {
                 color: "#EDF1F4", // Color of the y-axis labels
               },
+              grid: {
+                color: "rgba(255,255,255,0.1)" // Set color of y-axis gridlines to white
+              }
             },
             x: {
               type: "time",
@@ -74,6 +76,9 @@ const LineGraph = () => {
               },
               ticks: {
                 color: "#EDF1F4", // Color of the x-axis labels
+              },
+              grid: {
+                color: "rgba(255,255,255,0.1)", // Set color of y-axis gridlines to white
               },
             },
           },

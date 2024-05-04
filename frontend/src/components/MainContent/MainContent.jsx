@@ -5,10 +5,9 @@ import PolarAreaChart from "../Charts/PolarAreaChart";
 import PieChart from "../Charts/PieChart";
 import LineGraph from "../Charts/LineGraph";
 import StackedBarChart from "../Charts/StackedBarChart";
-import HorizontalBarChart from "../Charts/HorizontalBarChart";
-import LineGraph2 from "../Charts/LineGraph2";
-import WordCloud from "../Charts/wordCloud";
-import Card from "../Charts/card";
+import WordCloud from "../Charts/WordCloud";
+import CardOne from "../Charts/CardOne";
+import CardTwo from "../Charts/CardTwo";
 
 
 const MainContent = () => {
@@ -21,15 +20,15 @@ const MainContent = () => {
           <LineGraph />
         </div>
         <div className="chart-element card1">
-          <Card />
+          <CardOne />
         </div>
         <div className="chart-element pie-chart">
-          <h5>Customer Ratings </h5>
+          <h5>Customer Ratings</h5>
           <PieChart />
         </div>
 
         <div className="chart-element card2">
-          <Card />
+          <CardTwo />
         </div>
 
         <div className="chart-element doughnut-chart ">
@@ -57,4 +56,5 @@ const MainContent = () => {
     </div>
   );
 };
+
 export default MainContent;

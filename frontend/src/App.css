@@ -14,6 +14,8 @@
 
 /* css variables */
 :root {
+  --red: #d33c3c;
+  --green: #2ca336;
   --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
   --orange: #fca61f;
   --black: #242d49;

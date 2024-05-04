@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 const WordCloud = () => {
   const [imageSrc, setImageSrc] = useState('');

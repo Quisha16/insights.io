@@ -46,46 +46,55 @@ h1 {
   max-height:500px ;
   grid-column: 2 / span 2;
 }
+
 .card2 {
   grid-column: 2 / span 2;
 }
 
-.word-cloud
-{
-  
+.word-cloud {
   grid-column: 3 / span 2;
 }
-.wordcloud-image
-{
+
+.wordcloud-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
   object-position: center;
 }
-.wordcloud-container
-{
+
+.wordcloud-container {
   width: 80%;
   ;
 }
 
 .polar-chart
  {
-  /* grid-column: 1/ span 2; */
-  grid-row: span 2; /* Spanning 2 rows */
-  grid-column: span 2; /* Spanning 2 columns */
+  grid-row: span 2; 
+  grid-column: span 2; 
 }
 
-.info-item {
-  margin-bottom: 10px;
+.info-box {
+  padding: 2rem;
 }
+
 .info-label {
   text-transform: capitalize;
   font-size: 13px;
 }
+
 .info-value {
+  text-transform: capitalize;
   margin-top: 10px;
   font-size: 40px;
   font-weight: bold;
   color: #a5e5fb;
   display: block;
+}
+
+.info-increase {
+  color: var(--green);
+}
+
+.info-decrease {
+  color: var(--red);
 }

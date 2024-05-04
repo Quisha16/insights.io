@@ -76,7 +76,6 @@ def get_customer_overtime_positive_sentiment(request):
     }
     return JsonResponse({'overtime_sentiment_data': overtime_sentiment_data}, safe=False)
 
-
 def get_customer_overtime_sentiment(request):
     zero_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=0).annotate(month=TruncMonth('created_at'), year=TruncYear('created_at')).values('month', 'year').annotate(count=Count('id')).order_by('year', 'month')
     one_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=1).annotate(month=TruncMonth('created_at'), year=TruncYear('created_at')).values('month', 'year').annotate(count=Count('id')).order_by('year', 'month')
@@ -93,6 +92,7 @@ def get_customer_overtime_sentiment(request):
         'one_overtime_sentiment_data': one_overtime_sentiment_data
     }
     return JsonResponse(response_data, safe=False)
+
 
 def dashboard(request):
     context = {'image_path': IMAGE_PATH}
