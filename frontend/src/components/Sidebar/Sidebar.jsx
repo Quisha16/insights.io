@@ -1,7 +1,8 @@
+
 import React, { useState } from "react";
 import "./Sidebar.css";
 import { SidebarData } from "../../Data/Data";
-import { UilSignOutAlt } from "@iconscout/react-unicons";
+import { UilDownloadAlt } from '@iconscout/react-unicons';
 import jsPDF from "jspdf";
 
 const headerTexts = ["Product Performance overtime"];
@@ -46,20 +47,25 @@ const Sidebar = () => {
           );
         })}
       </div>
-      <h1 className="title">Dashboard</h1>
+      
       <button
         onClick={() => downloadPDF(headerTexts)} // Corrected onClick attribute
         style={{
           // Corrected style attribute
           width: "150px",
           height: "40px",
-          backgroundColor: "#007bff",
+          backgroundColor: "#57657D",
           color: "#ffffff",
+          marginLeft: "auto", 
+          
+          
+
         }}
       >
-        PDF Version
+         <UilDownloadAlt />
       </button>
-    </div>
+      </div>
+    
   );
 };
 
