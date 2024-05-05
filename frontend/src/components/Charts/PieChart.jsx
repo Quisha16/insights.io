@@ -31,11 +31,10 @@ const PieChart = () => {
               backgroundColor: [
                 " #9F88FD",
                 "#743ee2",
-                
+
                 "#6346d5",
                 "#5b89d8",
                 "#1EA8DF",
-                
               ],
               borderWidth: 0,
             },
@@ -44,13 +43,16 @@ const PieChart = () => {
         options: {
           responsive: true,
           plugins: {
-            legend: {               
-              position: 'right',
+            legend: {
+              position: "bottom",
               labels: {
                 color: "#EDF1F4",
+                font: {
+                  size: 12,
+                  family: "Nanum Gothic Coding",
+                },
               },
             },
-          
           },
         },
       });

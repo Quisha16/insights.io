@@ -150,7 +150,7 @@ const Home = () => {
       const responseData = await response.json();
       console.log(responseData);
 
-      navigate("/DashboardTwo");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Error submitting form:", error);
     }
@@ -160,6 +160,7 @@ const Home = () => {
     <div className="glass-container">
       <div className="glass-content">
         <div className="upload-box">
+          <div className="title">Insights.Io</div>
           <div className="text">Upload CSV File</div>
           <form
             method="post"
@@ -179,13 +180,13 @@ const Home = () => {
                     style={{ display: "none" }}
                   />
                 </label>
-                {uploadedFile && <span>{uploadedFile.name}</span>}
+                {uploadedFile && <span className="uploaded-file">{uploadedFile.name}</span>}
               </div>
             </div>
             <div>
-              <div className="text">Provide Product Link</div> <input type="text" name="product_link" />
+              <div className="text">Provide Product Link</div> <input type="text" name="product_link"  placeholder="Enter Link" />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" className="submit-button">Submit</button>
           </form>
         </div>
       </div>

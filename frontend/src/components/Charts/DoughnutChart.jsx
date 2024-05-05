@@ -39,6 +39,7 @@ const DoughnutChart = () => {
           responsive: true,
           plugins: {
             legend: {
+              position: 'bottom',
               labels: {
                 color: '#EDF1F4', // Set legend label color
                 font:{

@@ -61,10 +61,33 @@ const StackedBarChart = () => {
         options: {
           plugins: {
             legend: {
+              
               labels: {
                 color: "#EDF1F4", // Set legend label color
+                font: {
+                  size: 12,
+                  family: "Nanum Gothic Coding",
+                },
+              },
+              
+            },
+            tooltip: {
+              enabled: true,
+              backgroundColor: "rgba(0, 0, 0, 0.7)", // Background color of the tooltip
+              titleFont: {
+                family: "Nanum Gothic Coding",
+                size: 14,
+                weight: "700",
+                color: "#EDF1F4", // Font color of the tooltip title
+              },
+              bodyFont: {
+                family: "Nanum Gothic Coding",
+                size: 12,
+                weight: "400",
+                color: "#EDF1F4", // Font color of the tooltip body
               },
             },
+
             datalabels: {
               formatter: function(value, context) {
                   const sumValue = context.chart.config.data.datasets.map((datapoint) =>

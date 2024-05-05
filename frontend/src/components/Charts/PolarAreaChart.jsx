@@ -26,7 +26,7 @@ const PolarAreaChart = () => {
           labels: labels,
           datasets: [
             {
-              label: "Customer Ratings",
+              label: "Review Count",
               data: data,
               backgroundColor: [
                 " #83D4E4",
@@ -50,6 +50,10 @@ const PolarAreaChart = () => {
             legend: {
               labels: {
                 color: "#EDF1F4",
+                font: {
+                  size: 12,
+                  family: "Nanum Gothic Coding",
+                },
               },
             },
             datalabels: {

@@ -3,7 +3,7 @@ import Chart from "chart.js/auto";
 import moment from "moment";
 import "chartjs-adapter-moment"; // This will register the Moment.js adapter with Chart.js
 import "../MainContent/MainContent.css";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const LineGraph = () => {
   const chartRef = useRef(null);
@@ -39,13 +39,17 @@ const LineGraph = () => {
         lineChartRef.current.destroy();
       }
 
+      const ctx2 = chartRef.current.getContext("2d");
+      const gradient = ctx2.createLinearGradient(0, 0, 0, 400); // Define the gradient along the Y-axis
+      gradient.addColorStop(0, "rgba(99, 70, 213, 0.5)"); // Start color
+      gradient.addColorStop(1, "rgba(0, 121, 231, 0)"); // End color (transparent)
       lineChartRef.current = new Chart(ctx, {
         type: "line",
         data: {
           labels: labels,
           datasets: [
             {
-              label: " No. of Reviews",
+              label: " Positive",
               data: oneValues, // Example data for positive sentiment over months
               borderColor: "#9F88FD", // Positive sentiment line color
               pointRadius: 2,
@@ -54,11 +58,11 @@ const LineGraph = () => {
               backgroundColor: "rgba(159, 136, 253, 0.3)",
               fill: {
                 target: "origin",
-                above: "rgba(159, 136, 253, 0.3)",
+                above: gradient,
               },
             },
             {
-              label: " No. of Reviews",
+              label: "Negative",
               data: zeroValues, // Example data for negative sentiment over months
               borderColor: "#1EA8DF", // Negative sentiment line color
               pointRadius: 2,
@@ -67,7 +71,7 @@ const LineGraph = () => {
               backgroundColor: "rgba(0, 121, 231, 0.3)",
               fill: {
                 target: "origin",
-                above: "rgba(0, 121, 231, 0.3)",
+                above: "rgba(0, 121, 231, 0.5)",
               },
             },
           ],
@@ -89,7 +93,7 @@ const LineGraph = () => {
               },
 
               ticks: {
-                  color: "#EDF1F4",
+                color: "#EDF1F4",
               },
 
               grid: {
@@ -127,13 +131,13 @@ const LineGraph = () => {
           plugins: {
             legend: {
               labels: {
-                color: "#EDF1F4", 
+                color: "#EDF1F4",
                 font: {
                   size: 12,
                   family: "Nanum Gothic Coding",
                 },
                 boxWidth: 20,
-                boxHeight:20
+                boxHeight: 20,
               },
             },
             tooltip: {
