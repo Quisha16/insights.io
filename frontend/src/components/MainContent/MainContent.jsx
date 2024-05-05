@@ -15,13 +15,8 @@ const MainContent = () => {
     <div className="main-content">
       
       <div className="chart-layout">
-        <div className="chart-element line-graph">
-          <h5>Product Performance Overtime </h5>
-          <LineGraph />
-        </div>
-        <div className="chart-element card1">
-          <CardOne />
-        </div>
+        
+        
         <div className="chart-element pie-chart">
           <h5>Customer Ratings</h5>
           <PieChart />
@@ -36,6 +31,13 @@ const MainContent = () => {
           <DoughnutChart />
         </div>
 
+        <div className="chart-element line-graph">
+          <h5>Product Performance Overtime </h5>
+          <LineGraph />
+        </div>
+        <div className="chart-element card1">
+          <CardOne />
+        </div>
         <div className="chart-element stacked-bar">
           <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
           <StackedBarChart />

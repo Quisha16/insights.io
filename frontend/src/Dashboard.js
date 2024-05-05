@@ -4,7 +4,7 @@ import MainContent from './components/MainContent/MainContent';
 import Sidebar from './components/Sidebar/Sidebar';
 import './App.css';
 
-function DashboardTwo() {
+function Dashboard() {
   useEffect(() => {
     fetchData();
   }, []);
@@ -29,4 +29,4 @@ function DashboardTwo() {
   );
 }
 
-export default DashboardTwo;
+export default Dashboard;

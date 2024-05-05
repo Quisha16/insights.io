@@ -42,13 +42,13 @@ const PieChart = () => {
         options: {
           responsive: true,
           plugins: {
-            legend: { 
-              
+            legend: {               
               position: 'right',
               labels: {
                 color: "#EDF1F4",
               },
             },
+          
           },
         },
       });

@@ -26,8 +26,14 @@ const LineGraph = () => {
       ];
       labels.sort((a, b) => new Date(a) - new Date(b));
 
-      const zeroValues = Object.values(zeroData);
-      const oneValues = Object.values(oneData);
+      const zeroValues = [];
+      const oneValues = [];
+
+      labels.forEach(label => {
+          zeroValues.push(zeroData[label] || 0); // If no data available for label, push 0
+          oneValues.push(oneData[label] || 0); // If no data available for label, push 0
+      });
+
 
       const ctx = chartRef.current.getContext("2d");
       if (lineChartRef.current) {
@@ -43,7 +49,7 @@ const LineGraph = () => {
               label: "Positive Sentiment",
               data: oneValues, // Example data for positive sentiment over months
               borderColor: "#19EE9E", // Positive sentiment line color
-              borderWidth: 2,
+              borderWidth: 1,
               fill: false,
             },
             {
@@ -76,6 +82,8 @@ const LineGraph = () => {
               },
               ticks: {
                 color: "#EDF1F4", // Color of the x-axis labels
+                maxRotation: 0, // Rotate labels to 90 degrees
+                minRotation: 0,
               },
               grid: {
                 color: "rgba(255,255,255,0.1)", // Set color of y-axis gridlines to white

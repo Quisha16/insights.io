@@ -60,7 +60,7 @@ const Home = () => {
       const responseData = await response.json();
       console.log(responseData);
 
-      navigate('/DashboardTwo');
+      navigate('/dashboard');
   
     } catch (error) {
       console.error('Error submitting form:', error);

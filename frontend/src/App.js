@@ -23,7 +23,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/Home/home';
 
-import DashboardTwo from './DashboardTwo';
+import Dashboard from './Dashboard';
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/DashboardTwo/*" element={<DashboardTwo />} />
+          <Route path="/dashboard/*" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

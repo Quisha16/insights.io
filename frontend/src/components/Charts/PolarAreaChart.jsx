@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const PolarAreaChart = () => {
   const chartRef = useRef(null);
@@ -42,7 +43,7 @@ const PolarAreaChart = () => {
           responsive: true,
           scales: {
             r: {
-              display: true,
+              display: false,
             },
           },
           plugins: {
@@ -51,8 +52,19 @@ const PolarAreaChart = () => {
                 color: "#EDF1F4",
               },
             },
+            datalabels: {
+              formatter: (value, ctx) => {
+                  const datapoints = ctx.chart.data.datasets[0].data
+                  const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
+                  const percentage = value / total * 100
+                  return percentage.toFixed(2) + "%";
+              },
+              color: '#000',
+          }
           },
+          
         },
+        plugins: [ChartDataLabels],
       });
 
       return () => {

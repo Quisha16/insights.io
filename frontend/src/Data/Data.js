@@ -42,31 +42,34 @@ import {
   UilPackage,
   UilChart,
   UilSignOutAlt,
-  UilBell
+  UilBell,
+  UilDashboard,
+  UilApps,
+  UilCog,
+  UilQuestion
 } from "@iconscout/react-unicons";
-
 
 // Sidebar Data
 export const SidebarData = [
   {
-    icon: UilEstate,
+    icon: UilApps,
     heading: "Dashboard",
   },
   {
     icon: UilClipboardAlt,
-    heading: "Reports",
+    heading: "Solutions",
   },
   {
-    icon: UilBell,
-    heading: "Alerts",
-  },
-  {
-    icon: UilPackage,
-    heading: 'Insights',
-
+    icon: UilCog,
+    heading: "Features",
   },
   {
     icon: UilChart,
-    heading: 'Analytics'
+    heading: 'About Us',
+
+  },
+  {
+    icon: UilQuestion,
+    heading: 'FAQ'
   },
 ];

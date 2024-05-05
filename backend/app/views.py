@@ -1,9 +1,9 @@
 import io
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render
 from django.contrib import messages
-from django.db.models import Count
+from django.db.models import Count, Max
 from django.db.models.functions import TruncMonth, TruncYear
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -93,10 +93,29 @@ def get_customer_overtime_sentiment(request):
     }
     return JsonResponse(response_data, safe=False)
 
+def get_sentiment_info():
+    prediction_data = Review.objects.values('sentiment_prediction').annotate(count=Count('sentiment_prediction')).order_by('sentiment_prediction')
+    prediction_data = {entry['sentiment_prediction']: entry['count'] for entry in prediction_data}
+
+    latest_review_date = Review.objects.aggregate(latest_date=Max('created_at'))['latest_date']
+    last_month = latest_review_date - timedelta(days=latest_review_date.day)  # Go to the first day of the last month
+    last_month_positive_reviews = Review.objects.filter(sentiment_prediction=1, created_at__year=last_month.year, created_at__month=last_month.month).count()
+    last_month_negative_reviews = Review.objects.filter(sentiment_prediction=0, created_at__year=last_month.year, created_at__month=last_month.month).count()
+    
+    
+    response_data = {
+        'prediction_data': prediction_data,
+        'last_month_reviews': {
+            'positive': last_month_positive_reviews,
+            'negative': last_month_negative_reviews
+        }
+    }
+
+    return JsonResponse(response_data, safe=False)
+
 def get_aspects(request):
+    get_sentiment_info()
     negative_aspects = get_negative_aspects()
-    print("Topics with higher negative sentiment:")
-    print(negative_aspects)
     return JsonResponse({'negative_aspects': negative_aspects}, safe=False)
 
 def dashboard(request):

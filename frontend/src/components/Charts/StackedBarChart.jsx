@@ -1,8 +1,10 @@
 
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import moment from "moment";
 import "chartjs-adapter-moment";
+import moment from "moment";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 
 const StackedBarChart = () => {
   const chartRef = useRef(null);
@@ -26,8 +28,14 @@ const StackedBarChart = () => {
       ];
       labels.sort((a, b) => new Date(a) - new Date(b));
 
-      const zeroValues = Object.values(zeroData);
-      const oneValues = Object.values(oneData);
+      const zeroValues = [];
+      const oneValues = [];
+
+      labels.forEach(label => {
+          zeroValues.push(zeroData[label] || 0); // If no data available for label, push 0
+          oneValues.push(oneData[label] || 0); // If no data available for label, push 0
+      });
+
 
       const ctx = chartRef.current.getContext("2d");
       if (stackedChartRef.current !== null) {
@@ -57,6 +65,30 @@ const StackedBarChart = () => {
                 color: "#EDF1F4", // Set legend label color
               },
             },
+            datalabels: {
+              formatter: function(value, context) {
+                  const sumValue = context.chart.config.data.datasets.map((datapoint) =>
+                  {
+                    return datapoint.data[context.dataIndex]
+                  })
+                  function totalSum(total, datapoint) {
+                    return total + datapoint;
+                  }
+                  let sum = sumValue.reduce(totalSum, 0);
+                  let percent=(value/sum*100.0).toFixed(1);
+                  if (percent !== "0.0") {
+                    return `${percent}%`;
+                } else {
+                    return ''; // Return empty string if percentage is 0
+                }         
+                },
+              color: "#fff", 
+              anchor: 'center',
+              align:'',
+              offset: -25,
+              rotation: -90,
+              display:  'auto'
+          },
           },
           responsive: true,
           scales: {
@@ -69,7 +101,9 @@ const StackedBarChart = () => {
                 },
               },
               ticks: {
-                color: "#EDF1F4", // Set x-axis label color
+                color: "#EDF1F4", 
+                maxRotation: 0, // Rotate labels to 90 degrees
+                minRotation: 0,
               },
             },
             y: {
@@ -81,7 +115,9 @@ const StackedBarChart = () => {
               },
             },
           },
+          barThickness: 5
         },
+        plugins: [ChartDataLabels],
       });
 
       // Cleanup function

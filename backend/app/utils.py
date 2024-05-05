@@ -101,7 +101,7 @@ def predict_sentiment():
         review.save()
 
     accuracy = accuracy_score(true_labels, predictions)
-    print(accuracy)
+    print('Accuracy: ', accuracy)
 
     return probabilities, predictions
     

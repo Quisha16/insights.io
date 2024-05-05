@@ -1,8 +1,7 @@
-
 import React, { useState } from "react";
 import "./Sidebar.css";
 import { SidebarData } from "../../Data/Data";
-import { UilDownloadAlt } from '@iconscout/react-unicons';
+import { UilDownloadAlt } from "@iconscout/react-unicons";
 import jsPDF from "jspdf";
 
 const headerTexts = ["Product Performance overtime"];
@@ -41,31 +40,16 @@ const Sidebar = () => {
               key={index}
               onClick={() => setSelected(index)} //onclick set selected to the index of the current.
             >
-              <item.icon />
+              <span className="icon-wrapper"><item.icon size="16" /></span>
               <span>{item.heading}</span>
             </div>
           );
         })}
       </div>
-      
-      <button
-        onClick={() => downloadPDF(headerTexts)} // Corrected onClick attribute
-        style={{
-          // Corrected style attribute
-          width: "150px",
-          height: "40px",
-          backgroundColor: "#57657D",
-          color: "#ffffff",
-          marginLeft: "auto", 
-          
-          
-
-        }}
-      >
-         <UilDownloadAlt />
-      </button>
+      <div className="download-button">
+        <UilDownloadAlt onClick={downloadPDF} />
       </div>
-    
+    </div>
   );
 };
 
