@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-const WordCloud = () => {
+const WordCloud = ({ imageName }) => {
   const [imageSrc, setImageSrc] = useState('');
 
   useEffect(() => {
     //  URL of the WordCloud image from  Django backend
-    fetch('http://localhost:8000/media/wordcloud.png') 
+    fetch(`http://localhost:8000/media/${imageName}.png`) 
       .then(response => response.blob())
       .then(blob => {
         const imageUrl = URL.createObjectURL(blob);

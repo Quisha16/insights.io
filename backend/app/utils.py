@@ -7,8 +7,10 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem import SnowballStemmer
 from nltk.tokenize import word_tokenize
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from collections import Counter
 from wordcloud import WordCloud
+from textblob import TextBlob
 from datetime import datetime
 from bs4 import BeautifulSoup
 from sklearn.metrics import accuracy_score
@@ -24,6 +26,8 @@ import os
 import pandas as pd
 from .models import Review
 from .apps import SentimentAnalyserConfig
+
+nltk.download('vader_lexicon')
 
 CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
 #CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
@@ -58,6 +62,20 @@ def preprocess_reviews():
         cleaned_reviews.append(cleaned_review)
         review.cleaned_review_text = cleaned_review
         review.save()
+
+    return cleaned_reviews
+
+def process_reviews_absa():
+    reviews = Review.objects.all()
+    cleaned_reviews = []
+
+    for review in reviews:
+        cleaned_review = review.review_text.lower()
+        cleaned_review = re.sub('[^a-zA-Z]',' ', cleaned_review)
+        cleaned_review = word_tokenize(cleaned_review)
+        cleaned_review = [w for w in cleaned_review if w not in stopword_list]
+        cleaned_review = ' '.join(cleaned_review)
+        cleaned_reviews.append(cleaned_review)
 
     return cleaned_reviews
 
@@ -98,24 +116,62 @@ def get_reviews():
     df = pd.DataFrame(data)
     return df
 
+def save_wordcloud(name, reviews):
+    wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap='ocean_r');
+    wordcloud.generate(reviews)
+    image_dir = settings.MEDIA_ROOT
+    os.makedirs(image_dir, exist_ok=True)
+    image_filename = os.path.join(image_dir, name)
+    print('file ', image_filename)
+    wordcloud.to_file(image_filename)
+
+    return image_filename
+    
+
 def generate_wordcloud():
+    print('in')
     df = get_reviews()
-    word_freq = Counter()
+    positive_reviews = []
+    negative_reviews = []
 
     for review in df['review_text']:
         review = review.lower()
         review = re.sub('[^a-zA-Z]',' ', review)
+        analysis = TextBlob(review)
         review = word_tokenize(review)
         review = [word for word in review if not word in Cstopwords]
-        word_freq.update(review)
+        review = " ".join(review)
+        if analysis.sentiment.polarity > 0:
+            positive_reviews.append(review)
+        elif analysis.sentiment.polarity < 0:
+            negative_reviews.append(review)
 
-    wordcloud = WordCloud(stopwords=Cstopwords, max_words=20,  mode='RGBA', background_color=None, colormap='Pastel1').generate_from_frequencies(word_freq)
-    image_dir = settings.MEDIA_ROOT
-    os.makedirs(image_dir, exist_ok=True)
-    image_filename = os.path.join(image_dir, 'wordcloud.png')
-    wordcloud.to_file(image_filename)
+    positive_reviews = ' '.join(positive_reviews)
+    negative_reviews = ' '.join(negative_reviews)
+        
+    positive_wordcloud_image = save_wordcloud('wordcloud_positive.png', positive_reviews)
+    #wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap='ocean_r').generate_from_frequencies(word_freq)
+    negative_wordcloud_image = save_wordcloud('wordcloud_negative.png', negative_reviews)
+    return {'positive_wordcloud_image': positive_wordcloud_image, 'negative_wordcloud_image': negative_wordcloud_image}
 
-    return image_filename
+def get_negative_aspects():
+    sid = SentimentIntensityAnalyzer()
+    reviews = process_reviews_absa()
+
+    negative_topics = {}
+    for review in reviews:
+        sentiment_scores = sid.polarity_scores(review)
+        if sentiment_scores['compound'] < 0:
+            words = nltk.word_tokenize(review)
+            topics = [word for word, pos in nltk.pos_tag(words) if pos.startswith('NN')]
+            for topic in topics:
+                negative_topics[topic] = negative_topics.get(topic, 0) + 1
+
+    negative_topics = dict(sorted(negative_topics.items(), key=lambda item: item[1], reverse=True))
+    negative_topics = dict(list(negative_topics.items())[:10])
+
+    return negative_topics
+    
 
 def login_amazon(driver):
     try:

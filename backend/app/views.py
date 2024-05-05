@@ -8,7 +8,7 @@ from django.db.models.functions import TruncMonth, TruncYear
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from .models import Review
-from .utils import predict_sentiment, generate_wordcloud, process_product_link
+from .utils import predict_sentiment, generate_wordcloud, process_product_link, get_negative_aspects
 
 IMAGE_PATH=''
 
@@ -59,7 +59,7 @@ def form_submit(request):
     return render(request, 'home.html')
 
 def get_sentiment_prediction(request):
-    prediction_data = Review.objects.values('sentiment_prediction').annotate(count=Count('sentiment_prediction'))
+    prediction_data = Review.objects.values('sentiment_prediction').annotate(count=Count('sentiment_prediction')).order_by('sentiment_prediction')
     prediction_data = {entry['sentiment_prediction']: entry['count'] for entry in prediction_data}
     return JsonResponse({'prediction_data': prediction_data}, safe=False)
 
@@ -93,7 +93,14 @@ def get_customer_overtime_sentiment(request):
     }
     return JsonResponse(response_data, safe=False)
 
+def get_aspects(request):
+    negative_aspects = get_negative_aspects()
+    print("Topics with higher negative sentiment:")
+    print(negative_aspects)
+    return JsonResponse({'negative_aspects': negative_aspects}, safe=False)
 
 def dashboard(request):
-    context = {'image_path': IMAGE_PATH}
-    return render(request, 'dashboard.html', context)
+    IMAGE_PATHS = generate_wordcloud()
+    context = {'positive_wordcloud_image_path': IMAGE_PATHS['positive_wordcloud_image'], 'negative_wordcloud_image_path': IMAGE_PATHS['negative_wordcloud_image']}
+    #return render(request, 'dashboard.html', context)
+    return JsonResponse({'message': 'Dashboard display.'})

@@ -11,12 +11,10 @@ const PolarAreaChart = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/customer_rating/");
+      const response = await fetch("http://localhost:8000/aspect_modelling/");
       const responseData = await response.json();
-      const [labels, data] = [
-        Object.keys(responseData.rating_data),
-        Object.values(responseData.rating_data),
-      ];
+      const [labels, data] = [Object.keys(responseData.negative_aspects), Object.values(responseData.negative_aspects)];
+      
       const ctx = chartRef.current.getContext("2d");
       if (chartInstance.current !== null) {
         chartInstance.current.destroy(); // Destroy the previous Chart instance

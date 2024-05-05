@@ -45,12 +45,12 @@ const MainContent = () => {
           <PolarAreaChart />
         </div>
         <div className="chart-element word-cloud">
-          <h5>Sentiment Word Cloud</h5>
-          <WordCloud />
+          <h5>Positive Sentiment Word Cloud</h5>
+          <WordCloud imageName="wordcloud_positive"/>
         </div>
         <div className="chart-element word-cloud">
-          <h5>Sentiment Word Cloud</h5>
-          <WordCloud />
+          <h5>Negative Sentiment Word Cloud</h5>
+          <WordCloud imageName="wordcloud_negative"/>
         </div>
       </div>
     </div>
