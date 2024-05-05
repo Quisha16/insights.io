@@ -30,7 +30,7 @@ const MainContent = () => {
         </div>
 
         <div className="chart-element doughnut-chart ">
-          <h5>Customer Sentiment</h5>
+          <h5>Sentiment Prediction Score</h5>
           <DoughnutChart />
         </div>
 
@@ -39,7 +39,7 @@ const MainContent = () => {
           <StackedBarChart />
         </div>
         <div className="chart-element polar-chart">
-          <h5>Customer Ratings </h5>
+          <h5>Top Issues</h5>
           <PolarAreaChart />
         </div>
         <div className="chart-element word-cloud">

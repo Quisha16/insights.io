@@ -1,5 +1,5 @@
 h1 {
-  color: #ddd;
+  color: var(--offwhite);
 }
 
 .main-content {
@@ -30,12 +30,6 @@ h1 {
 
 .chart-element {
   padding: 2rem;
-  background-color: linear-gradient(
-    0deg,
-    rgb(47, 54, 80) 20%,
-    rgb(80, 93, 124) 96%
-  );
-  
 }
 
 .line-graph {
@@ -63,7 +57,6 @@ h1 {
 
 .wordcloud-container {
   width: 80%;
-  ;
 }
 
 .polar-chart
@@ -72,22 +65,66 @@ h1 {
   grid-column: span 2; 
 }
 
+.card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+
 .info-box {
-  padding: 2rem;
+  color: var(--offwhite);
+  padding: 1rem 2rem;
 }
 
 .info-label {
-  text-transform: capitalize;
-  font-size: 1rem;
+  display: block;
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 0.4rem;
 }
 
+
 .info-value {
-  text-transform: capitalize;
-  margin-top: 10px;
+  text-align: right;
+  font-family: "Major Mono Display", monospace;
   font-size: 5rem;
-  font-weight: bold;
-  color: var(--white2);
   display: block;
+}
+
+
+.total {
+  font-size: 1.5rem;
+}
+
+.info-value-total {
+  font-size: 7rem;
+}
+
+
+.card-two {
+  display: flex;
+}
+.card-two-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.info-label-two {
+  display: block;
+}
+.info-value-two {
+  display: block;
+}
+.update-wrapper {
+}
+
+.overall-label {
+  font-family: 'Nanum Gothic Coding', monospace;
+  text-transform: capitalize;
 }
 
 .info-increase {
@@ -97,6 +134,7 @@ h1 {
 .info-decrease {
   color: var(--red);
 }
+
 
 @media screen and (max-width: 768px) {
   .chart-layout {

@@ -1,6 +1,7 @@
 /* css fonts */
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+/* font-family: "Major Mono Display", monospace; */
 * {
   font-family: 'Nanum Gothic Coding', monospace;
   font-weight: 400;
@@ -15,12 +16,16 @@
 /* css variables */
 :root {
 
-  --color-primary1: #9F88FD;
-  --color-primary2: #1EA8DF;
-  --color-primary3: #0079E7;
-  --black:#181719;
+  --color-primary: #9F88FD;
+  --color-secondary: #1EA8DF;
+  --color-tertiary: #0079E7;
+  --black:#000;
+  --matte:#181719;
   --white:#FFFFFF;
-  --white2:#EDF1F4;
+  --offwhite:#EDF1F4;
+  --color-grid: #1F1D36;
+  --red: #C40C0C;
+  --green: #0D9276;
 
   --color-primary1: #6346d5;
   --color-primary2: #5b89d8;
@@ -36,17 +41,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(0deg, rgb(47, 54, 80) 20%, rgb(80, 93, 124) 96%);
-  /* background: linear-gradient(106.37deg, #ffe1bc 29.63%, #ffcfd1 51.55%, #f3c6f1 90.85% ); */
+  /* background: linear-gradient(0deg, rgb(47, 54, 80) 20%, rgb(80, 93, 124) 96%); */
+  background-color: var(--black);
 }
 
 .AppContainer {
   display: flex;
   flex-direction: column; 
   margin: 6rem 0;
-  /* height: 90vh; */
   width: 90vw;
-  background-color: var(--black);
-  /* overflow: hidden; */
+  background-color: var(--matte);
   padding-bottom: 6rem;
 }

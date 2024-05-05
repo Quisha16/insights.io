@@ -3,6 +3,7 @@ import Chart from "chart.js/auto";
 import moment from "moment";
 import "chartjs-adapter-moment"; // This will register the Moment.js adapter with Chart.js
 import "../MainContent/MainContent.css";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 const LineGraph = () => {
   const chartRef = useRef(null);
@@ -44,28 +45,29 @@ const LineGraph = () => {
           labels: labels,
           datasets: [
             {
-              label: "Positive Sentiment",
+              label: " No. of Reviews",
               data: oneValues, // Example data for positive sentiment over months
               borderColor: "#9F88FD", // Positive sentiment line color
               pointRadius: 2,
-
               pointBorderWidth: 1,
               borderWidth: 0,
+              backgroundColor: "rgba(159, 136, 253, 0.3)",
               fill: {
                 target: "origin",
-                above: "rgba(159, 136, 253, 0.5)",
+                above: "rgba(159, 136, 253, 0.3)",
               },
             },
             {
-              label: "Negative Sentiment",
+              label: " No. of Reviews",
               data: zeroValues, // Example data for negative sentiment over months
               borderColor: "#1EA8DF", // Negative sentiment line color
               pointRadius: 2,
               pointBorderWidth: 1,
               borderWidth: 0,
+              backgroundColor: "rgba(0, 121, 231, 0.3)",
               fill: {
                 target: "origin",
-                above: "rgba(0, 121, 231, 0.2)",
+                above: "rgba(0, 121, 231, 0.3)",
               },
             },
           ],
@@ -82,12 +84,12 @@ const LineGraph = () => {
                   family: "Nanum Gothic Coding",
                   size: 14,
                   weight: "bold",
-                  color: "#EDF1F4", // Color of y-axis title
+                  color: "#EDF1F4",
                 },
               },
 
               ticks: {
-                color: "#EDF1F4", // Color of the y-axis labels
+                  color: "#EDF1F4",
               },
 
               grid: {
@@ -125,15 +127,34 @@ const LineGraph = () => {
           plugins: {
             legend: {
               labels: {
-                color: "#EDF1F4", // Color of the legend labels
+                color: "#EDF1F4", 
                 font: {
                   size: 12,
                   family: "Nanum Gothic Coding",
                 },
+                boxWidth: 20,
+                boxHeight:20
+              },
+            },
+            tooltip: {
+              enabled: true,
+              backgroundColor: "rgba(0, 0, 0, 0.7)", // Background color of the tooltip
+              titleFont: {
+                family: "Nanum Gothic Coding",
+                size: 14,
+                weight: "700",
+                color: "#EDF1F4", // Font color of the tooltip title
+              },
+              bodyFont: {
+                family: "Nanum Gothic Coding",
+                size: 12,
+                weight: "400",
+                color: "#EDF1F4", // Font color of the tooltip body
               },
             },
           },
         },
+        plugins: [ChartDataLabels],
       });
 
       // Cleanup function to destroy chart instance

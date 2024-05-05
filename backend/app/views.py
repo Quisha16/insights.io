@@ -93,7 +93,7 @@ def get_customer_overtime_sentiment(request):
     }
     return JsonResponse(response_data, safe=False)
 
-def get_sentiment_info():
+def get_sentiment_info(request):
     prediction_data = Review.objects.values('sentiment_prediction').annotate(count=Count('sentiment_prediction')).order_by('sentiment_prediction')
     prediction_data = {entry['sentiment_prediction']: entry['count'] for entry in prediction_data}
 
@@ -110,13 +110,10 @@ def get_sentiment_info():
             'negative': last_month_negative_reviews
         }
     }
-
     return JsonResponse(response_data, safe=False)
 
 def get_aspects(request):
-    get_sentiment_info()
     negative_aspects = get_negative_aspects()
-    print(negative_aspects)
     return JsonResponse({'negative_aspects': negative_aspects}, safe=False)
 
 def dashboard(request):
