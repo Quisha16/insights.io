@@ -35,7 +35,7 @@ h1 {
     rgb(47, 54, 80) 20%,
     rgb(80, 93, 124) 96%
   );
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  
 }
 
 .line-graph {
@@ -78,15 +78,15 @@ h1 {
 
 .info-label {
   text-transform: capitalize;
-  font-size: 13px;
+  font-size: 1rem;
 }
 
 .info-value {
   text-transform: capitalize;
   margin-top: 10px;
-  font-size: 40px;
+  font-size: 5rem;
   font-weight: bold;
-  color: #a5e5fb;
+  color: var(--white2);
   display: block;
 }
 

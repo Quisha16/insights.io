@@ -14,24 +14,26 @@
 
 /* css variables */
 :root {
-  --red: 
-  --light-blue: #34545;
-  --green: #2ca336;
-  --yellow: linear-gradient(180deg, #F8D49A -146.42%, #FAD79D -46.42%);
-  --orange: #fca61f;
-  --black: #242d49;
-  --gray: #788097;
-  --purple: linear-gradient(180deg, #BB67FF 0%, #C484F3 100%);
-  --pink: #FF919D;
+
+  --color-primary1: #9F88FD;
+  --color-primary2: #1EA8DF;
+  --color-primary3: #0079E7;
+  --black:#181719;
+  --white:#FFFFFF;
+  --white2:#EDF1F4;
+
+  --color-primary1: #6346d5;
+  --color-primary2: #5b89d8;
+  --color-primary3: #743ee2;
+
+  --bg-color: rgba(14, 19, 23, 0.24);
   --glass: rgba(14, 19, 23, 0.54);
-  --boxShadow: 0px 19px 60px rgb(0 0 0 / 8%);
-  --smboxShadow: -79px 51px 60px rgba(0, 0, 0, 0.08);
-  --activeItem: #f799a354;
 }
 
 .App {
   /* height: 100vh; */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background: linear-gradient(0deg, rgb(47, 54, 80) 20%, rgb(80, 93, 124) 96%);
@@ -44,7 +46,7 @@
   margin: 6rem 0;
   /* height: 90vh; */
   width: 90vw;
-  background-color: var(--glass);
+  background-color: var(--black);
   /* overflow: hidden; */
   padding-bottom: 6rem;
 }

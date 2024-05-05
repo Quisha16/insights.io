@@ -1,25 +1,95 @@
-.upload-container {
-    position: relative;
-    min-height: 100vh;
-    
-  }
-  
-  .content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    text-align: center;
-    color: rgb(4, 0, 0); /* White text color */
-  }
-  
-  .upload-box {
-    background-color: #F2F0DE;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  h1{
-    color:#242d49 ;
-  }
+.glass-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.glass-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-box {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  height: 500px;
+  width: 500px;
+
+}
+
+.glass-container form {
+  font-size: 18px; /* Increase font size */
+  color: #222; /* Change text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.glass-container form label {
+  color: #333; /* Change label text color */
+  margin-bottom: 0.5rem;
+}
+
+.glass-container form input[type="text"]
+{
+  font-size: 16px; /* Increase font size for input */
+  width: 100%;
+  height: 35px;
+  padding: 10px 20px;
+  border-radius: 25px; /* Add rounded borders */
+  border: 1px solid #557db1; /* Add border */
+  background-color: rgba(255, 255, 255, 0.8); /* Change input background color */
+  margin-bottom: 1rem;
+}
+
+.glass-container form button[type="submit"] {
+  font-size: 18px; /* Increase font size for button */
+  color: white;
+  border: none;
+  border-radius: 25px; /* Add rounded borders */
+  height: 40px;
+  margin-top: 6rem ;
+  padding: 0 20px;
+  background: #b0cdf3;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.glass-container form button[type="submit"]:hover {
+  background-color: #0056b3; /* Change button background color on hover */
+}
+
+.upload-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.upload-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+
+.upload-button input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.text
+{
+  font-size:16px ;
+  text-align: center;
+  margin-top: 6rem;
+}

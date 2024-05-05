@@ -116,6 +116,7 @@ def get_sentiment_info():
 def get_aspects(request):
     get_sentiment_info()
     negative_aspects = get_negative_aspects()
+    print(negative_aspects)
     return JsonResponse({'negative_aspects': negative_aspects}, safe=False)
 
 def dashboard(request):

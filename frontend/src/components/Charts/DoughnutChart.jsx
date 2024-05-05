@@ -29,8 +29,8 @@ const DoughnutChart = () => {
             label: 'Reviews',
             data: data,
             backgroundColor: [
-              '#4AC295', // positive reviews
-              '#4399BA', // negative reviews
+              '#1EA8DF', // positive reviews
+              '#9F88FD ', // negative reviews
             ],
             borderWidth: 0
           }]
@@ -40,7 +40,11 @@ const DoughnutChart = () => {
           plugins: {
             legend: {
               labels: {
-                color: '#EDF1F4' // Set legend label color
+                color: '#EDF1F4', // Set legend label color
+                font:{
+                  size: 12,
+                  family: "Nanum Gothic Coding",
+                }
               }
             }
           }

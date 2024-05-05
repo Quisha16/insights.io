@@ -49,12 +49,12 @@ const StackedBarChart = () => {
             {
               label: "Positive Sentiments",
               data: oneValues,
-              backgroundColor: "#4AC295",
+              backgroundColor: "#9F88FD",
             },
             {
               label: "Negative Sentiments",
               data: zeroValues,
-              backgroundColor: "#39AFE0",
+              backgroundColor: "#1EA8DF",
             },
           ],
         },
@@ -94,6 +94,16 @@ const StackedBarChart = () => {
           scales: {
             x: {
               stacked: true,
+              title: {
+                display: true,
+                text: "Time",
+                font: {
+                  family: "Nanum Gothic Coding",
+                  size: 14,
+                  weight: "bold",
+                  color: "#EDF1F4", // Color of y-axis title
+                },
+              },
               type: "time",
               time: {
                 displayFormats: {
@@ -105,17 +115,33 @@ const StackedBarChart = () => {
                 maxRotation: 0, // Rotate labels to 90 degrees
                 minRotation: 0,
               },
+              grid: {
+                color: "#1F1D36", // Set color of y-axis gridlines to white
+              },
             },
             y: {
               stacked: true,
-              display: true,
+              display: true, title: {
+                display: true,
+                text: "Count Of Reviews",
+                font: {
+                  family: "Nanum Gothic Coding",
+                  size: 14,
+                  weight: "bold",
+                  color: "#EDF1F4", // Color of y-axis title
+                },
+              },
+              grid: {
+                color: "#1F1D36", // Set color of y-axis gridlines to white
+              },
+
 
               ticks: {
                 color: "#EDF1F4", // Set y-axis label color
               },
             },
           },
-          barThickness: 5
+          barThickness: 10
         },
         plugins: [ChartDataLabels],
       });

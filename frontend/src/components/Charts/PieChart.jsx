@@ -29,11 +29,13 @@ const PieChart = () => {
               label: "Customer Ratings",
               data: data,
               backgroundColor: [
-                " #83D4E4",
-                "#2D8B9D",
-                "#007C8F",
-                "#00657A",
-                "#50ADCC",
+                " #9F88FD",
+                "#743ee2",
+                
+                "#6346d5",
+                "#5b89d8",
+                "#1EA8DF",
+                
               ],
               borderWidth: 0,
             },

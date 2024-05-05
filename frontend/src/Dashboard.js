@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import MainContent from './components/MainContent/MainContent';
-import Sidebar from './components/Sidebar/Sidebar';
-import './App.css';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import MainContent from "./components/MainContent/MainContent";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Footer from "./components/Footer/Footer";
+import "./App.css";
 
 function Dashboard() {
   useEffect(() => {
@@ -22,9 +23,10 @@ function Dashboard() {
   return (
     <div className="App">
       <div className="AppContainer">
-        <Sidebar/>
-        <MainContent/>
+        <Sidebar />
+        <MainContent />
       </div>
+      
     </div>
   );
 }
