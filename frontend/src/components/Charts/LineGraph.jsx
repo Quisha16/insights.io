@@ -40,9 +40,13 @@ const LineGraph = () => {
       }
 
       const ctx2 = chartRef.current.getContext("2d");
-      const gradient = ctx2.createLinearGradient(0, 0, 0, 400); // Define the gradient along the Y-axis
-      gradient.addColorStop(0, "rgba(99, 70, 213, 0.5)"); // Start color
-      gradient.addColorStop(1, "rgba(0, 121, 231, 0)"); // End color (transparent)
+      const gradient1 = ctx2.createLinearGradient(0, 0, 0, 400); // Define the gradient along the Y-axis
+      gradient1.addColorStop(0, "rgba(108, 34, 166, 1)"); // Start color
+      gradient1.addColorStop(1, "rgba(108, 34, 166, 0)"); // End color (transparent)
+      const gradient2 = ctx2.createLinearGradient(0, 0, 0, 400); // Define the gradient along the Y-axis
+      gradient2.addColorStop(0, "rgba(0, 121, 231, 1)"); // Start color
+      gradient2.addColorStop(1, "rgba(73, 33, 236, 0)"); // End color (transparent)
+
       lineChartRef.current = new Chart(ctx, {
         type: "line",
         data: {
@@ -55,10 +59,10 @@ const LineGraph = () => {
               pointRadius: 2,
               pointBorderWidth: 1,
               borderWidth: 0,
-              backgroundColor: "rgba(159, 136, 253, 0.3)",
+              backgroundColor: "rgba(108, 34, 166, 0.5)",
               fill: {
                 target: "origin",
-                above: gradient,
+                above: gradient1,
               },
             },
             {
@@ -68,10 +72,10 @@ const LineGraph = () => {
               pointRadius: 2,
               pointBorderWidth: 1,
               borderWidth: 0,
-              backgroundColor: "rgba(0, 121, 231, 0.3)",
+              backgroundColor: "rgba(73, 33, 236, 0.5)",
               fill: {
                 target: "origin",
-                above: "rgba(0, 121, 231, 0.5)",
+                above: gradient2,
               },
             },
           ],

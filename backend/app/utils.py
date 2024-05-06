@@ -24,6 +24,8 @@ import numpy as np
 import re
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
@@ -117,7 +119,10 @@ def get_reviews():
     return df
 
 def save_wordcloud(name, reviews):
-    wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap='ocean_r');
+    colors = [ (0, "#0079E7"), (0.25,"#5291D3"),   (0.5, "#4921EC"), (0.75,"#6C22A6"),  (1, "#876CDF")]
+    
+    cmap = plt.cm.colors.LinearSegmentedColormap.from_list('custom_palette', colors)
+    wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap=cmap);
     wordcloud.generate(reviews)
     image_dir = settings.MEDIA_ROOT
     os.makedirs(image_dir, exist_ok=True)
@@ -150,7 +155,6 @@ def generate_wordcloud():
     negative_reviews = ' '.join(negative_reviews)
         
     positive_wordcloud_image = save_wordcloud('wordcloud_positive.png', positive_reviews)
-    #wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap='ocean_r').generate_from_frequencies(word_freq)
     negative_wordcloud_image = save_wordcloud('wordcloud_negative.png', negative_reviews)
     return {'positive_wordcloud_image': positive_wordcloud_image, 'negative_wordcloud_image': negative_wordcloud_image}
 

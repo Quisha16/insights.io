@@ -1,4 +1,3 @@
-
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import './home.css';
@@ -41,7 +40,7 @@
 //     formData.append('myfile', uploadedFile);
 //     formData.append('product_link', event.target.product_link.value);
 //     const csrftoken = getCookie('csrftoken');
-   
+
 //     try {
 //       const response = await fetch('http://localhost:8000/form_submit/', {
 //         credentials: 'include',
@@ -52,16 +51,16 @@
 //         },
 //         body: formData,
 //       });
-  
+
 //       if (!response.ok) {
 //         throw new Error('Network response was not ok');
 //       }
-  
+
 //       const responseData = await response.json();
 //       console.log(responseData);
 
 //       navigate('/dashboard');
-  
+
 //     } catch (error) {
 //       console.error('Error submitting form:', error);
 //     }
@@ -159,34 +158,62 @@ const Home = () => {
   return (
     <div className="glass-container">
       <div className="glass-content">
+        <div className="logo logo-main">
+          <span>
+            Insights<span>.io</span>
+          </span>
+        </div>
+        <div className="text-main">
+          Unlock the power of your data with INSIGHTS.IO Instantly transform raw
+          text into detailed insights and stunning visualizations. Dive deep
+          into your data to uncover trends, sentiments, and patterns with ease.
+          Elevate your analysis game and make smarter decisions with our
+          intuitive platform.
+        </div>
         <div className="upload-box">
-          <div className="title">Insights.Io</div>
           <div className="text">Upload CSV File</div>
+          <div className="text2">
+            Please upload your data in CSV format of the product you'd like to
+            analyze.
+          </div>
           <form
             method="post"
             encType="multipart/form-data"
             onSubmit={handleSubmit}
           >
             <CSRFToken />
+            <div className="upload-csv">
+              <label htmlFor="myfile" className="upload-button">
+                <UilUploadAlt className="upload-icon" />
+                <input
+                  id="myfile"
+                  type="file"
+                  name="myfile"
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+              </label>
+              {uploadedFile && (
+                <span className="uploaded-file">{uploadedFile.name}</span>
+              )}
+            </div>
             <div>
-              <div>
-                <label htmlFor="myfile" className="upload-button">
-                  <UilUploadAlt className="upload-icon" /> 
-                  <input
-                    id="myfile"
-                    type="file"
-                    name="myfile"
-                    onChange={handleFileChange}
-                    style={{ display: "none" }}
-                  />
-                </label>
-                {uploadedFile && <span className="uploaded-file">{uploadedFile.name}</span>}
+            <div className="text text-center">OR</div>{" "}
+              <div className="text">Input Product URL</div>{" "}
+              <div className="text2">
+                Paste a link to the product you'd like to analyze.
               </div>
+              <input
+                type="text"
+                name="product_link"
+                placeholder="example: https://www.amazon.in/dp/B07FQ4Q7MB"
+              />
             </div>
-            <div>
-              <div className="text">Provide Product Link</div> <input type="text" name="product_link"  placeholder="Enter Link" />
+            <div className="submit">
+              <button type="submit" className="submit-button">
+                Submit
+              </button>
             </div>
-            <button type="submit" className="submit-button">Submit</button>
           </form>
         </div>
       </div>

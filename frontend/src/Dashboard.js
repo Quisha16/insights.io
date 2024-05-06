@@ -26,7 +26,7 @@ function Dashboard() {
         <Sidebar />
         <MainContent />
       </div>
-      
+      <Footer />
     </div>
   );
 }

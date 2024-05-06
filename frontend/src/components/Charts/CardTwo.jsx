@@ -26,7 +26,7 @@ const CardTwo = () => {
       var x = data[0] + data[1];
       setTotalNegative((data[0] / x) * 100.0);
       setTotalPositive((data[1] / x) * 100.0);
-      setOverallSentiment(data[1] >= data[0] ? "Positive :)" : "Negative :(");
+      setOverallSentiment(data[1] >= data[0] ? "Positive" : "Negative");
 
       const zeroVal = latestData['negative'];
       const oneVal = latestData['positive'];
@@ -47,32 +47,32 @@ const CardTwo = () => {
   };
 
   return (
+    
     <div className="card-two">
       <div className="info-container-two">
-        <div className="card-two-heading">Analytics Summary</div>
         <div className="info-box-two">
           <span className="info-label-two">Positive Sentiment</span>
           <span className="info-value-two">{totalPositive.toFixed(2)} %</span>
-          <div className="update-wrapper">
+          {/* <div className="update-wrapper">
             <span className="info-increase">
               &#8593;{lastPositiveCount} &nbsp; &nbsp; &nbsp;
             </span>
             <span className="info-update-percent">
               +{lastPositivePercent.toFixed(2)}% Over Last 30 Days
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="info-box-two">
           <span className="info-label-two">Negative Sentiment</span>
           <span className="info-value-two">{totalNegative.toFixed(2)} %</span>
-          <div className="update-wrapper">
+          {/* <div className="update-wrapper">
             <span className="info-decrease">
               &#8595;{lastNegativeCount} &nbsp; &nbsp; &nbsp;
             </span>
             <span className="info-update-percent">
               -{lastNegativePercent.toFixed(2)}% Over Last 30 Days
             </span>
-          </div>
+          </div> */}
         </div>
         <div className="info-box-two">
           <span className="info-label-two">Overall Sentiment</span>

@@ -25,11 +25,30 @@ h1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 3rem;
-  grid-gap: 1rem;
+  grid-gap: 4rem;
+}
+
+.chart-image{
+  position: relative; /* Ensure the container is positioned */
+  background-image: url('../Home/wallpaper6.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.chart-image::after {
+  content: ""; /* Add content to the pseudo-element */
+  position: absolute; /* Position the pseudo-element absolutely */
+  top: 0; /* Position it at the top of the container */
+  left: 0; /* Position it at the left of the container */
+  width: 100%; /* Make it cover the entire width of the container */
+  height: 100%; /* Make it cover the entire height of the container */
+  background-color: rgba(0, 0, 0, 0.3); /* Set the background color with transparency */
+
 }
 
 .chart-element {
   padding: 2rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .line-graph {
@@ -48,15 +67,10 @@ h1 {
   grid-column: 3 / span 2;
 }
 
-.wordcloud-image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
 .wordcloud-container {
-  width: 80%;
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center;
 }
 
 .polar-chart
@@ -119,22 +133,35 @@ h1 {
   font-size: 7rem;
 }
 
-
 .card-two {
+  margin-top: 5rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.card-two-heading {
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
+
+.info-container-two {
+  padding:  2rem;
 }
 
 .info-label-two {
+  text-align: center;
   display: block;
+  margin: 1rem 0; 
 }
+
 .info-value-two {
+  text-align: center;
   display: block;
+  font-size: 4rem;
 }
+
 .update-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
 }
 
 .overall-label {
@@ -148,6 +175,10 @@ h1 {
 
 .info-decrease {
   color: var(--red);
+}
+
+.word-cloud h5 {
+  margin-bottom: 3rem;
 }
 
 

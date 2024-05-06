@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
-import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const PolarAreaChart = () => {
   const chartRef = useRef(null);
@@ -14,8 +14,11 @@ const PolarAreaChart = () => {
     try {
       const response = await fetch("http://localhost:8000/aspect_modelling/");
       const responseData = await response.json();
-      const [labels, data] = [Object.keys(responseData.negative_aspects), Object.values(responseData.negative_aspects)];
-      
+      const [labels, data] = [
+        Object.keys(responseData.negative_aspects),
+        Object.values(responseData.negative_aspects),
+      ];
+
       const ctx = chartRef.current.getContext("2d");
       if (chartInstance.current !== null) {
         chartInstance.current.destroy(); // Destroy the previous Chart instance
@@ -26,14 +29,19 @@ const PolarAreaChart = () => {
           labels: labels,
           datasets: [
             {
-              label: "Review Count",
+              label: " Review Count",
               data: data,
               backgroundColor: [
-                " #83D4E4",
-                "#2D8B9D",
-                "#007C8F",
-                "#00657A",
-                "#50ADCC",
+                "rgba(0, 121, 231, 1)",
+                "rgba(82, 145, 211, 1)",
+                "rgba(73, 33, 236, 1)",
+                "rgba(108, 34, 166, 1)",
+                "rgba(135, 108, 223, 1)",
+                "rgba(0, 121, 231, 0.7)",
+                "rgba(82, 145, 211, 0.7)",
+                "rgba(73, 33, 236, 0.7)",
+                "rgba(108, 34, 166, 0.7)",
+                "rgba(135, 108, 223, 0.7)",
               ],
               borderWidth: 0,
             },
@@ -48,6 +56,7 @@ const PolarAreaChart = () => {
           },
           plugins: {
             legend: {
+              position: "bottom",
               labels: {
                 color: "#EDF1F4",
                 font: {
@@ -56,17 +65,41 @@ const PolarAreaChart = () => {
                 },
               },
             },
+            tooltip: {
+              enabled: true,
+              backgroundColor: "rgba(0, 0, 0, 0.7)", // Background color of the tooltip
+              titleFont: {
+                family: "Nanum Gothic Coding",
+                size: 14,
+                weight: "700",
+                color: "#EDF1F4", // Font color of the tooltip title
+              },
+              bodyFont: {
+                family: "Nanum Gothic Coding",
+                size: 12,
+                weight: "400",
+                color: "#EDF1F4", // Font color of the tooltip body
+              },
+            },
             datalabels: {
               formatter: (value, ctx) => {
-                  const datapoints = ctx.chart.data.datasets[0].data
-                  const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
-                  const percentage = value / total * 100
-                  return percentage.toFixed(2) + "%";
+                const datapoints = ctx.chart.data.datasets[0].data;
+                const total = datapoints.reduce(
+                  (total, datapoint) => total + datapoint,
+                  0
+                );
+                const percentage = (value / total) * 100;
+                return percentage.toFixed(2) + "%";
               },
-              color: '#000',
-          }
+              color: "#EDF1F4",
+              align: "end",
+              offset: 50, 
+              font:  {
+                size: 12,
+                family: "Nanum Gothic Coding",
+              },
+            },
           },
-          
         },
         plugins: [ChartDataLabels],
       });

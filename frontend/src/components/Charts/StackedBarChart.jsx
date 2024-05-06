@@ -47,12 +47,12 @@ const StackedBarChart = () => {
           labels: labels,
           datasets: [
             {
-              label: "Positive Sentiments",
+              label: " Positive",
               data: oneValues,
               backgroundColor: "#9F88FD",
             },
             {
-              label: "Negative Sentiments",
+              label: " Negative",
               data: zeroValues,
               backgroundColor: "#1EA8DF",
             },

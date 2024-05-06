@@ -20,7 +20,8 @@
   --color-secondary: #1EA8DF;
   --color-tertiary: #0079E7;
   --black:#000;
-  --matte:#181719;
+  --matte:#110f1cfc; 
+  /* --matte:#171521fc;  */
   --white:#FFFFFF;
   --offwhite:#EDF1F4;
   --color-grid: #1F1D36;
@@ -36,13 +37,11 @@
 }
 
 .App {
-  /* height: 100vh; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(0deg, rgb(47, 54, 80) 20%, rgb(80, 93, 124) 96%); */
-  background-color: var(--black);
+  background-color: var(--matte);
 }
 
 .AppContainer {
@@ -51,5 +50,6 @@
   margin: 6rem 0;
   width: 90vw;
   background-color: var(--matte);
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   padding-bottom: 6rem;
 }

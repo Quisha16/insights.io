@@ -38,6 +38,9 @@ const MainContent = () => {
           <h5>Ratio of Positive and Negative Sentiments Overtime</h5>
           <StackedBarChart />
         </div>
+        <div className="chart-element chart-image">
+        </div>
+        
         <div className="chart-element polar-chart">
           <h5>Top Issues</h5>
           <PolarAreaChart />

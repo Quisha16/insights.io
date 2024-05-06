@@ -5,16 +5,17 @@
   transition: all 300ms ease;
   display: flex;
   justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 }
 
 .logo {
   padding: 2rem 0;
-  color: white;
+  color: #EDF1F4;;
   font-size: 1.5rem;
 }
 
 .logo > span > span {
-  color: #a5e5fb;
+  color: rgba(135, 108, 223, 1);
 }
 
 .download-button {
@@ -32,7 +33,7 @@
   align-items: center;
   gap: 0.5rem;
   transition: transform 300ms ease-in-out; /* Only transition transform property */
-  color: white;
+  color: #EDF1F4;;
 }
 
 .menuItem span:hover {

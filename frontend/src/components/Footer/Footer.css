@@ -1,7 +1,8 @@
 .footer {
-  background-color: #10182f;
+  background-color: var(--matte);
   padding: 40px 0;
   text-align: left;
+  width: 100%;
 }
 
 .container {

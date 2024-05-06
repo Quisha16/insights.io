@@ -1,5 +1,6 @@
 venv/
-app/media/wordcloud.png
+app/media/wordcloud_positive.png
+app/media/wordcloud_negative.png
 app/webscraper/AmazonReviews.csv
 *.pyc
 __pycache__/

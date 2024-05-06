@@ -26,15 +26,14 @@ const PieChart = () => {
           labels: labels,
           datasets: [
             {
-              label: "Customer Ratings",
+              label: " Customer Ratings",
               data: data,
               backgroundColor: [
-                " #9F88FD",
-                "#743ee2",
-
-                "#6346d5",
-                "#5b89d8",
-                "#1EA8DF",
+                "rgba(0, 121, 231, 1)",
+                "rgba(82, 145, 211, 1)",
+                "rgba(73, 33, 236, 1)",
+                "rgba(108, 34, 166, 1)",
+                "rgba(135, 108, 223, 1)",
               ],
               borderWidth: 0,
             },
@@ -51,6 +50,22 @@ const PieChart = () => {
                   size: 12,
                   family: "Nanum Gothic Coding",
                 },
+              },
+            },
+            tooltip: {
+              enabled: true,
+              backgroundColor: "rgba(0, 0, 0, 0.7)", // Background color of the tooltip
+              titleFont: {
+                family: "Nanum Gothic Coding",
+                size: 14,
+                weight: "700",
+                color: "#EDF1F4", // Font color of the tooltip title
+              },
+              bodyFont: {
+                family: "Nanum Gothic Coding",
+                size: 12,
+                weight: "400",
+                color: "#EDF1F4", // Font color of the tooltip body
               },
             },
           },
