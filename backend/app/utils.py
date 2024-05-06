@@ -214,7 +214,7 @@ def parse_review_data(page, driver):
     dates = []
     ratings = []
 
-    for page_num in range(10):  
+    for page_num in range(20):  
         page_source = get_amazon_search('https://www.amazon.in'+link+'&pageNumber='+str(page_num), driver)
         soup = BeautifulSoup(page_source, features='lxml')
 
