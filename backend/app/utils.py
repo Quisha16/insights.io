@@ -172,7 +172,7 @@ def get_negative_aspects():
                 negative_topics[topic] = negative_topics.get(topic, 0) + 1
 
     negative_topics = dict(sorted(negative_topics.items(), key=lambda item: item[1], reverse=True))
-    negative_topics = dict(list(negative_topics.items())[:10])
+    negative_topics = dict(list(negative_topics.items())[:20])
 
     return negative_topics
     
