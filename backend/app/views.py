@@ -29,13 +29,23 @@ def form_submit(request):
             data = review_data.read().decode('UTF-8')
             io_string = io.StringIO(data)
             next(io_string)
-            for column in csv.reader(io_string, delimiter=',', quotechar='|'):
-                created = Review.objects.update_or_create(
-                    created_at = column[0],
-                    review_text = column[1],
-                    rating = column[2]
-                )
-        elif 'product_link' in request.POST:  # Check if a text link is provided
+            # for column in csv.reader(io_string, delimiter=',', quotechar='|'):
+            #     created = Review.objects.update_or_create(
+            #         created_at = column[0],
+            #         review_text = column[1],
+            #         rating = column[2]
+            #     )
+            for column in csv.reader(io_string, delimiter=',', quotechar='"'):
+                try:
+                    Review.objects.update_or_create(
+                        created_at=column[0],
+                        review_text=column[1],
+                        rating=float(column[2])  # Convert rating to float
+                    )
+                except ValueError as e:
+                    messages.error(request, f"Error processing row {column}: {e}")
+                    continue
+        elif 'product_link' in request.POST:  
             product_link = request.POST['product_link']
             try:
                 review_data = process_product_link(product_link)
@@ -44,7 +54,7 @@ def form_submit(request):
                     Review.objects.update_or_create(
                         created_at=row['Date'],
                         review_text=row['Review'],
-                        rating=row['Rating']
+                        rating=float(row['Rating'])
                     )
             except Exception as e:
                 messages.error(request, 'Error fetching data from the provided link:')
@@ -53,7 +63,6 @@ def form_submit(request):
         predict_sentiment()
         IMAGE_PATH = generate_wordcloud()
         
-        #return render(request, 'dashboard.html')
         return JsonResponse({'message': 'Form submitted successfully'})
         
     return render(request, 'home.html')
@@ -98,7 +107,7 @@ def get_sentiment_info(request):
     prediction_data = {entry['sentiment_prediction']: entry['count'] for entry in prediction_data}
 
     latest_review_date = Review.objects.aggregate(latest_date=Max('created_at'))['latest_date']
-    last_month = latest_review_date - timedelta(days=latest_review_date.day)  # Go to the first day of the last month
+    last_month = latest_review_date - timedelta(days=latest_review_date.day)  
     last_month_positive_reviews = Review.objects.filter(sentiment_prediction=1, created_at__year=last_month.year, created_at__month=last_month.month).count()
     last_month_negative_reviews = Review.objects.filter(sentiment_prediction=0, created_at__year=last_month.year, created_at__month=last_month.month).count()
     
@@ -119,5 +128,4 @@ def get_aspects(request):
 def dashboard(request):
     IMAGE_PATHS = generate_wordcloud()
     context = {'positive_wordcloud_image_path': IMAGE_PATHS['positive_wordcloud_image'], 'negative_wordcloud_image_path': IMAGE_PATHS['negative_wordcloud_image']}
-    #return render(request, 'dashboard.html', context)
     return JsonResponse({'message': 'Dashboard display.'})

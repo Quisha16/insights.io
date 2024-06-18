@@ -80,7 +80,7 @@ const DoughnutChart = () => {
 
       return () => {
         if (chartInstance.current !== null) {
-          chartInstance.current.destroy(); // Cleanup on component unmount
+          chartInstance.current.destroy(); 
         }
       };
     } catch (error) {

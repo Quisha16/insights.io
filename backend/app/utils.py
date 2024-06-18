@@ -1,4 +1,4 @@
-# Please download following nltk resources
+# Please download following nltk resources in python terminal
 #nltk.download('stopwords'), nltk.download('punkt'), nltk.download('wordnet')
 
 from django.conf import settings
@@ -19,6 +19,8 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from transformers import BertTokenizer, BertForSequenceClassification
+import torch
 import pandas as pd
 import numpy as np
 import re
@@ -59,7 +61,6 @@ def preprocess_reviews():
         cleaned_review = re.sub('[^a-zA-Z]',' ', cleaned_review)
         cleaned_review = word_tokenize(cleaned_review)
         cleaned_review = [stemmer.stem(w) for w in cleaned_review if w not in stopword_list]
-        #cleaned_review = [lemma.lemmatize(w) for w in cleaned_review if w not in Cstopwords]
         cleaned_review = ' '.join(cleaned_review)
         cleaned_reviews.append(cleaned_review)
         review.cleaned_review_text = cleaned_review
@@ -82,17 +83,28 @@ def process_reviews_absa():
     return cleaned_reviews
 
 def predict_sentiment():
-    cleaned_reviews = preprocess_reviews()
+    #cleaned_reviews = preprocess_reviews()  #Uncomment for ML model
     reviews = Review.objects.all()
 
     predictions = []
     probabilities = []    
     true_labels = []
 
+
+    ''' for review in reviews:   #Uncomment for ML model
+            vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
+            prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
+            proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
+            probabilities.append(round(proba * 100, 2))
+            predictions.append(prediction)'''
+    
     for review in reviews:
-        vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
-        prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
-        proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
+        inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
+        with torch.no_grad():
+            outputs = SentimentAnalyserConfig.model(**inputs)
+        logits = outputs.logits
+        prediction = torch.argmax(logits, dim=1).item()
+        proba = torch.softmax(logits, dim=1).max().item()
         probabilities.append(round(proba * 100, 2))
         predictions.append(prediction)
 
@@ -101,11 +113,12 @@ def predict_sentiment():
 
         review.sentiment_prediction = prediction
         review.save()
-
+    
     accuracy = accuracy_score(true_labels, predictions)
     print('Accuracy: ', accuracy)
-
     return probabilities, predictions
+
+
     
 def get_reviews():
     review = Review.objects.all()
@@ -134,7 +147,6 @@ def save_wordcloud(name, reviews):
     
 
 def generate_wordcloud():
-    print('in')
     df = get_reviews()
     positive_reviews = []
     negative_reviews = []
@@ -180,11 +192,13 @@ def get_negative_aspects():
 def login_amazon(driver):
     try:
         driver.get(AMAZON_LOGIN_URL)
+
         email_input = driver.find_element(By.ID, "ap_email")
         email_input.send_keys("lizzencamelo02@gmail.com")
 
         continue_button = driver.find_element(By.ID, "continue")
         continue_button.click()
+        print('hi')
 
         password_input = driver.find_element(By.ID, "ap_password")
         password_input.send_keys("K1ll1ngC0mmen;")
@@ -214,7 +228,7 @@ def parse_review_data(page, driver):
     dates = []
     ratings = []
 
-    for page_num in range(20):  
+    for page_num in range(15):  
         page_source = get_amazon_search('https://www.amazon.in'+link+'&pageNumber='+str(page_num), driver)
         soup = BeautifulSoup(page_source, features='lxml')
 
@@ -238,10 +252,9 @@ def parse_review_data(page, driver):
 def process_product_link(url):
     service = Service(CHROMEDRIVER_PATH)
     driver = webdriver.Chrome(service=service)
-    driver.set_page_load_timeout(5000)
+    driver.set_page_load_timeout(500)
 
-    login_amazon(driver)
-    
+    #login_amazon(driver)
     page=get_amazon_search(url, driver)
 
     if page:
@@ -258,4 +271,4 @@ def process_product_link(url):
     else:
         print("Failed to fetch search results.")
 
-    driver.quit()
+    driver.quit() 
