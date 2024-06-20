@@ -1,6 +1,7 @@
-# Please download following nltk resources in python terminal
-#nltk.download('stopwords'), nltk.download('punkt'), nltk.download('wordnet')
-
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('vader_lexicon')
 from django.conf import settings
 import nltk
 from nltk.corpus import stopwords
@@ -31,10 +32,8 @@ from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-nltk.download('vader_lexicon')
 
-CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
-#CHROMEDRIVER_PATH = "C:\\Users\\Quisha Coutinho\\GoogleDriver\\chromedriver-win64\\chromedriver.exe"
+CHROMEDRIVER_PATH =  "path/to/chromedriver.exe"
 AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
 
 #nltk stopwords list without negative words
@@ -90,16 +89,15 @@ def predict_sentiment():
     probabilities = []    
     true_labels = []
 
-
-    """ for review in reviews:
-        inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
-        with torch.no_grad():
-            outputs = SentimentAnalyserConfig.model(**inputs)
-        logits = outputs.logits
-        prediction = torch.argmax(logits, dim=1).item()
-        proba = torch.softmax(logits, dim=1).max().item()
-        probabilities.append(round(proba * 100, 2))
-        predictions.append(prediction) """
+    # for review in reviews:
+    #     inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
+    #     with torch.no_grad():
+    #         outputs = SentimentAnalyserConfig.model(**inputs)
+    #     logits = outputs.logits
+    #     prediction = torch.argmax(logits, dim=1).item()
+    #     proba = torch.softmax(logits, dim=1).max().item()
+    #     probabilities.append(round(proba * 100, 2))
+    #     predictions.append(prediction)
 
     for review in reviews:   #Uncomment for ML model
         vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
@@ -107,7 +105,7 @@ def predict_sentiment():
         proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
         probabilities.append(round(proba * 100, 2))
         predictions.append(prediction)
-    
+
         true_label = 1 if review.rating >= 3 else 0
         true_labels.append(true_label)
 

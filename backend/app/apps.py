@@ -12,10 +12,10 @@ class SentimentAnalyserConfig(AppConfig):
     vectorizer = joblib.load(vectorizer_path)
 
     # Load BERT model and tokenizer
-    """ model_path = os.path.join(settings.BASE_DIR, 'app', 'models', 'model')
-    tokeniser_path = os.path.join(settings.BASE_DIR, 'app', 'models', 'tokeniser')
-    tokenizer = BertTokenizer.from_pretrained(tokeniser_path)
-    model = BertForSequenceClassification.from_pretrained(model_path) """
+    # model_path = os.path.join(settings.BASE_DIR, 'app', 'models', 'model')
+    # tokeniser_path = os.path.join(settings.BASE_DIR, 'app', 'models', 'tokeniser')
+    # tokenizer = BertTokenizer.from_pretrained(tokeniser_path)
+    # model = BertForSequenceClassification.from_pretrained(model_path)
 
     name = 'app'
 
