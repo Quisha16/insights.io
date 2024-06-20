@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UilUploadAlt } from "@iconscout/react-unicons";
 import "./home.css";
+import LoadingPage from "../LoadingPage/LoadingPage";
 
 function getCookie(name) {
   var cookieValue = null;
@@ -27,6 +28,7 @@ const CSRFToken = () => {
 const Home = () => {
   const navigate = useNavigate();
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -35,6 +37,7 @@ const Home = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true); 
     const formData = new FormData();
     formData.append("myfile", uploadedFile);
     formData.append("product_link", event.target.product_link.value);
@@ -61,10 +64,16 @@ const Home = () => {
       navigate("/dashboard");
     } catch (error) {
       console.error("Error submitting form:", error);
+    } finally {
+      setIsLoading(false); 
     }
   };
 
   return (
+    <div>
+      {isLoading ? (
+        <LoadingPage /> 
+      ) : (
     <div className="glass-container">
       <div className="glass-content">
         <div className="logo logo-main">
@@ -126,6 +135,8 @@ const Home = () => {
           </form>
         </div>
       </div>
+    </div>
+         )}
     </div>
   );
 };

@@ -102,7 +102,6 @@ h1 {
   margin-right: 4rem;
 }
 
-
 .info-box {
   color: var(--offwhite);
   padding: 1rem 2rem;
@@ -116,14 +115,12 @@ h1 {
   margin-bottom: 0.4rem;
 }
 
-
 .info-value {
   text-align: right;
   font-family: "Major Mono Display", monospace;
   font-size: 5rem;
   display: block;
 }
-
 
 .total {
   font-size: 1.5rem;

@@ -43,6 +43,7 @@
 .menuItem span {
   color: gray;
   font-size: 0.9rem;
+  transition: color 100ms ease-in-out;
 }
 
 .download-button {
