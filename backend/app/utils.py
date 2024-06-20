@@ -83,7 +83,7 @@ def process_reviews_absa():
     return cleaned_reviews
 
 def predict_sentiment():
-    #cleaned_reviews = preprocess_reviews()  #Uncomment for ML model
+    cleaned_reviews = preprocess_reviews()  #Uncomment for ML model
     reviews = Review.objects.all()
 
     predictions = []
@@ -91,14 +91,7 @@ def predict_sentiment():
     true_labels = []
 
 
-    ''' for review in reviews:   #Uncomment for ML model
-            vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
-            prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
-            proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
-            probabilities.append(round(proba * 100, 2))
-            predictions.append(prediction)'''
-    
-    for review in reviews:
+    """ for review in reviews:
         inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
         with torch.no_grad():
             outputs = SentimentAnalyserConfig.model(**inputs)
@@ -106,8 +99,15 @@ def predict_sentiment():
         prediction = torch.argmax(logits, dim=1).item()
         proba = torch.softmax(logits, dim=1).max().item()
         probabilities.append(round(proba * 100, 2))
-        predictions.append(prediction)
+        predictions.append(prediction) """
 
+    for review in reviews:   #Uncomment for ML model
+        vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
+        prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
+        proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
+        probabilities.append(round(proba * 100, 2))
+        predictions.append(prediction)
+    
         true_label = 1 if review.rating >= 3 else 0
         true_labels.append(true_label)
 

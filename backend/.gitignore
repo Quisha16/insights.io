@@ -2,6 +2,7 @@ venv/
 app/media/wordcloud_positive.png
 app/media/wordcloud_negative.png
 app/webscraper/AmazonReviews.csv
-app/models/
+app/models/model
+app/models/tokeniser
 *.pyc
 __pycache__/
