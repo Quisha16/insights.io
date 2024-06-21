@@ -8,12 +8,10 @@ const HorizontalBarChart = () => {
   useEffect(() => {
     const ctx = chartRef.current.getContext("2d");
 
-    // Check if the chart instance already exists
     if (chartInstance.current !== null) {
       chartInstance.current.destroy();
     }
 
-    // Create a new charst instance and store it in chartInstance
     chartInstance.current = new Chart(ctx, {
       type: "bar",
       data: {

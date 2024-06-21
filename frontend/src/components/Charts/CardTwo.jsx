@@ -22,7 +22,6 @@ const CardTwo = () => {
       const responseData = await response.json();
       const data = responseData.prediction_data;
       const latestData = responseData.last_month_reviews;
-      console.log(data, latestData);
       var x = data[0] + data[1];
       setTotalNegative((data[0] / x) * 100.0);
       setTotalPositive((data[1] / x) * 100.0);
@@ -33,14 +32,11 @@ const CardTwo = () => {
 
       setLastNegativeCount(zeroVal)
       setLastPositiveCount(oneVal);
-      console.log('-',lastNegativeCount,lastPositiveCount)
 
       var x = oneVal / (data[1] - oneVal);
       var y = zeroVal / (data[0] - zeroVal);
       setLastPositivePercent(x * 100.0);
       setLastNegativePercent(y * 100.0);
-      console.log(lastNegativePercent, lastPositivePercent)
-
     } catch (error) {
       console.error("Error fetching data:", error);
     }

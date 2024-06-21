@@ -16,7 +16,7 @@ const WordCloud = ({ imageName }) => {
   }, []);
 
   return (
-    <div className="wordcloud-container"> {/* Add a container div */}
+    <div className="wordcloud-container"> 
       {imageSrc && (
         <img className="wordcloud-image" src={imageSrc} alt="WordCloud" /> 
       )}

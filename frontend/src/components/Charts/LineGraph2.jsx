@@ -25,7 +25,6 @@ const LineGraph2 = () => {
         chartInstance.current.destroy();
       }
 
-      // Create a new chart instance and store it in chartInstance
       chartInstance.current = new Chart(ctx, {
         type: "line",
         data: {

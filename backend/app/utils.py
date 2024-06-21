@@ -33,8 +33,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-CHROMEDRIVER_PATH =  "path/to/chromedriver.exe"
-AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
+CHROMEDRIVER_PATH = "path\to\chromedriver.exe"
 
 #nltk stopwords list without negative words
 stopword_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 
@@ -138,7 +137,6 @@ def save_wordcloud(name, reviews):
     image_dir = settings.MEDIA_ROOT
     os.makedirs(image_dir, exist_ok=True)
     image_filename = os.path.join(image_dir, name)
-    print('file ', image_filename)
     wordcloud.to_file(image_filename)
 
     return image_filename
@@ -186,30 +184,6 @@ def get_negative_aspects():
 
     return negative_topics
     
-
-def login_amazon(driver):
-    try:
-        driver.get(AMAZON_LOGIN_URL)
-
-        email_input = driver.find_element(By.ID, "ap_email")
-        email_input.send_keys("lizzencamelo02@gmail.com")
-
-        continue_button = driver.find_element(By.ID, "continue")
-        continue_button.click()
-        print('hi')
-
-        password_input = driver.find_element(By.ID, "ap_password")
-        password_input.send_keys("K1ll1ngC0mmen;")
-
-        sign_in_button = driver.find_element(By.ID, "signInSubmit")
-        sign_in_button.click()
-
-        WebDriverWait(driver, 10).until(EC.url_contains("https://www.amazon.in/"))
-        print("Login successful")
-
-    except Exception as e:
-        print(f"Error during login: {e}")
-
 def get_amazon_search(url, driver):
     try:
         driver.get(url)
@@ -252,7 +226,6 @@ def process_product_link(url):
     driver = webdriver.Chrome(service=service)
     driver.set_page_load_timeout(500)
 
-    #login_amazon(driver)
     page=get_amazon_search(url, driver)
 
     if page:

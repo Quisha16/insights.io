@@ -20,7 +20,6 @@ const StackedBarChart = () => {
         "http://localhost:8000/customer_overtime_sentiment/"
       );
       const responseData = await response.json();
-      console.log(responseData);
       const zeroData = responseData.zero_overtime_sentiment_data;
       const oneData = responseData.one_overtime_sentiment_data;
       const labels = [
