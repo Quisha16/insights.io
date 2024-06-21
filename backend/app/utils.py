@@ -1,7 +1,3 @@
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('vader_lexicon')
 from django.conf import settings
 import nltk
 from nltk.corpus import stopwords
@@ -31,7 +27,10 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
-
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('vader_lexicon')
 
 CHROMEDRIVER_PATH =  "path/to/chromedriver.exe"
 AMAZON_LOGIN_URL = "https://www.amazon.in/gp/sign-in.html"
