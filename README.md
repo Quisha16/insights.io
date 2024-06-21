@@ -22,6 +22,12 @@
                                                     > .\venv\Scripts\activate
     Install python packages:
                                                     > pip install -r requirements.txt
+                                                    
+    Download nltk packages mentioned in insights.io\backend\app\utils.py:
+                                                    > nltk.download('stopwords')
+                                                    > nltk.download('punkt')
+                                                    > nltk.download('wordnet')
+                                                    > nltk.download('vader_lexicon')
     Create django admin superuser if necessary:
                                                     > python manage.py createsuperuser
     Migrate Django models:
