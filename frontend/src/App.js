@@ -25,6 +25,7 @@ import Home from './components/Home/home';
 
 import Dashboard from './Dashboard';
 import Features from './components/FeaturesPage/Features'
+import AboutUs from './components/AboutUsPage/AboutUs'
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
           <Route path="/features" element={<Features />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </div>
     </Router>

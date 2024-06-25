@@ -26,7 +26,7 @@ export const SidebarData = [
   {
     icon: UilChart,
     heading: 'About Us',
-    path: "/dashboard"
+    path: "/about"
   },
   {
     icon: UilQuestion,
