@@ -29,6 +29,7 @@
 }
 
 .menuItem {
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -41,9 +42,14 @@
 }
 
 .menuItem span {
+  text-decoration: none;
   color: gray;
   font-size: 0.9rem;
   transition: color 100ms ease-in-out;
+}
+
+.menuItem a {
+  text-decoration: none;
 }
 
 .download-button {
@@ -62,6 +68,7 @@
 
 .active {
   background: transparent;
+  text-decoration: none;
   margin-top: 0; /* Adjusted to set margin-left to 0 */
 }
 

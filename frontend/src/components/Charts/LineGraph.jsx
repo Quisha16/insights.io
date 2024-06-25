@@ -3,7 +3,6 @@ import Chart from "chart.js/auto";
 import moment from "moment";
 import "chartjs-adapter-moment"; // This will register the Moment.js adapter with Chart.js
 import "../MainContent/MainContent.css";
-import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const LineGraph = () => {
   const chartRef = useRef(null);
@@ -21,6 +20,7 @@ const LineGraph = () => {
       const responseData = await response.json();
       const zeroData = responseData.zero_overtime_sentiment_data;
       const oneData = responseData.one_overtime_sentiment_data;
+      console.log(responseData)
       const labels = [
         ...new Set([...Object.keys(zeroData), ...Object.keys(oneData)]),
       ];
@@ -162,7 +162,6 @@ const LineGraph = () => {
             },
           },
         },
-        plugins: [ChartDataLabels],
       });
 
       // Cleanup function to destroy chart instance

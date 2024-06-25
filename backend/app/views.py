@@ -29,12 +29,6 @@ def form_submit(request):
             data = review_data.read().decode('UTF-8')
             io_string = io.StringIO(data)
             next(io_string)
-            # for column in csv.reader(io_string, delimiter=',', quotechar='|'):
-            #     created = Review.objects.update_or_create(
-            #         created_at = column[0],
-            #         review_text = column[1],
-            #         rating = column[2]
-            #     )
             for column in csv.reader(io_string, delimiter=',', quotechar='"'):
                 try:
                     Review.objects.update_or_create(
@@ -86,8 +80,12 @@ def get_customer_overtime_positive_sentiment(request):
     return JsonResponse({'overtime_sentiment_data': overtime_sentiment_data}, safe=False)
 
 def get_customer_overtime_sentiment(request):
-    zero_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=0).annotate(month=TruncMonth('created_at'), year=TruncYear('created_at')).values('month', 'year').annotate(count=Count('id')).order_by('year', 'month')
-    one_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=1).annotate(month=TruncMonth('created_at'), year=TruncYear('created_at')).values('month', 'year').annotate(count=Count('id')).order_by('year', 'month')
+    zero_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=0).annotate(
+                    month=TruncMonth('created_at'), year=TruncYear('created_at')).values(
+                    'month', 'year').annotate(count=Count('id')).order_by('year', 'month')
+    one_sentiment_by_month_year = Review.objects.filter(sentiment_prediction=1).annotate(
+                    month=TruncMonth('created_at'), year=TruncYear('created_at')).values(
+                    'month', 'year').annotate(count=Count('id')).order_by('year', 'month')
     zero_overtime_sentiment_data = {
         f"{entry['year'].strftime('%Y')}-{entry['month'].strftime('%m')}": entry['count']
         for entry in zero_sentiment_by_month_year

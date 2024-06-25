@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { UilUploadAlt } from "@iconscout/react-unicons";
 import "./home.css";
 import LoadingPage from "../LoadingPage/LoadingPage";
+import Footer from "../Footer/Footer";
 
 function getCookie(name) {
   var cookieValue = null;
@@ -74,6 +75,7 @@ const Home = () => {
       {isLoading ? (
         <LoadingPage /> 
       ) : (
+    <>
     <div className="glass-container">
       <div className="glass-content">
         <div className="logo logo-main">
@@ -136,6 +138,8 @@ const Home = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
          )}
     </div>
   );

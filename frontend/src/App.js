@@ -24,7 +24,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './components/Home/home';
 
 import Dashboard from './Dashboard';
-
+import Features from './components/FeaturesPage/Features'
 
 function App() {
   useEffect(() => {
@@ -37,6 +37,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/dashboard/*" element={<Dashboard />} />
+          <Route path="/features" element={<Features />} />
         </Routes>
       </div>
     </Router>

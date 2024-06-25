@@ -33,7 +33,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-CHROMEDRIVER_PATH = "path\to\chromedriver.exe"
+CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
 
 #nltk stopwords list without negative words
 stopword_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 
@@ -88,22 +88,24 @@ def predict_sentiment():
     probabilities = []    
     true_labels = []
 
-    # for review in reviews:
-    #     inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
-    #     with torch.no_grad():
-    #         outputs = SentimentAnalyserConfig.model(**inputs)
-    #     logits = outputs.logits
-    #     prediction = torch.argmax(logits, dim=1).item()
-    #     proba = torch.softmax(logits, dim=1).max().item()
+
+    # for review in reviews:   #Uncomment for ML model
+    #     vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
+    #     prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
+    #     proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
     #     probabilities.append(round(proba * 100, 2))
     #     predictions.append(prediction)
-
-    for review in reviews:   #Uncomment for ML model
-        vector = SentimentAnalyserConfig.vectorizer.transform([review.cleaned_review_text])
-        prediction = int(SentimentAnalyserConfig.model.predict(vector)[0])
-        proba = np.max(SentimentAnalyserConfig.model.predict_proba(vector))
+    
+    for review in reviews:
+        inputs = SentimentAnalyserConfig.tokenizer(review.review_text, return_tensors='pt', truncation=True, padding=True, max_length=380) #change maxlen?
+        with torch.no_grad():
+            outputs = SentimentAnalyserConfig.model(**inputs)
+        logits = outputs.logits
+        prediction = torch.argmax(logits, dim=1).item()
+        proba = torch.softmax(logits, dim=1).max().item()
         probabilities.append(round(proba * 100, 2))
         predictions.append(prediction)
+
 
         true_label = 1 if review.rating >= 3 else 0
         true_labels.append(true_label)
@@ -132,7 +134,7 @@ def save_wordcloud(name, reviews):
     colors = [ (0, "#0079E7"), (0.25,"#5291D3"),   (0.5, "#4921EC"), (0.75,"#6C22A6"),  (1, "#876CDF")]
     
     cmap = plt.cm.colors.LinearSegmentedColormap.from_list('custom_palette', colors)
-    wordcloud = WordCloud(stopwords=stopword_list, max_words=20,  mode='RGBA', background_color=None, colormap=cmap);
+    wordcloud = WordCloud(stopwords=Cstopwords, max_words=20,  mode='RGBA', background_color=None, colormap=cmap);
     wordcloud.generate(reviews)
     image_dir = settings.MEDIA_ROOT
     os.makedirs(image_dir, exist_ok=True)
@@ -143,21 +145,28 @@ def save_wordcloud(name, reviews):
     
 
 def generate_wordcloud():
-    df = get_reviews()
+    # df = get_reviews()
+    reviews = Review.objects.all()
     positive_reviews = []
     negative_reviews = []
 
-    for review in df['review_text']:
-        review = review.lower()
-        review = re.sub('[^a-zA-Z]',' ', review)
-        analysis = TextBlob(review)
-        review = word_tokenize(review)
-        review = [word for word in review if not word in Cstopwords]
-        review = " ".join(review)
-        if analysis.sentiment.polarity > 0:
-            positive_reviews.append(review)
-        elif analysis.sentiment.polarity < 0:
-            negative_reviews.append(review)
+    # for review in df['review_text']:
+    #     review = review.lower()
+    #     review = re.sub('[^a-zA-Z]',' ', review)
+    #     analysis = TextBlob(review)
+    #     review = word_tokenize(review)
+    #     review = [word for word in review if not word in Cstopwords]
+    #     review = " ".join(review)
+    #     if analysis.sentiment.polarity > 0:
+    #         positive_reviews.append(review)
+    #     elif analysis.sentiment.polarity < 0:
+    #         negative_reviews.append(review)
+
+    for review in reviews:
+        if review.sentiment_prediction == 1:
+            positive_reviews.append(review.review_text)
+        elif review.sentiment_prediction == 0:
+            negative_reviews.append(review.review_text)
 
     positive_reviews = ' '.join(positive_reviews)
     negative_reviews = ' '.join(negative_reviews)
@@ -173,9 +182,9 @@ def get_negative_aspects():
     negative_topics = {}
     for review in reviews:
         sentiment_scores = sid.polarity_scores(review)
-        if sentiment_scores['compound'] < 0:
+        if sentiment_scores['compound'] < -0.3:
             words = nltk.word_tokenize(review)
-            topics = [word for word, pos in nltk.pos_tag(words) if pos.startswith('NN')]
+            topics = [word for word, pos in nltk.pos_tag(words) if pos.startswith('NN') or pos.startswith('JJ')]
             for topic in topics:
                 negative_topics[topic] = negative_topics.get(topic, 0) + 1
 
@@ -200,7 +209,7 @@ def parse_review_data(page, driver):
     dates = []
     ratings = []
 
-    for page_num in range(15):  
+    for page_num in range(12):  
         page_source = get_amazon_search('https://www.amazon.in'+link+'&pageNumber='+str(page_num), driver)
         soup = BeautifulSoup(page_source, features='lxml')
 
