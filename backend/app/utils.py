@@ -33,7 +33,7 @@ from matplotlib.colors import LinearSegmentedColormap
 from .models import Review
 from .apps import SentimentAnalyserConfig
 
-CHROMEDRIVER_PATH = "C:\\Users\\Lizzen\\ChromeDriver\\chromedriver.exe"
+CHROMEDRIVER_PATH = "Path\\to\\ChromeDriver\\chromedriver.exe"
 
 #nltk stopwords list without negative words
 stopword_list = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', "you're", "you've", "you'll", "you'd", 'your', 
